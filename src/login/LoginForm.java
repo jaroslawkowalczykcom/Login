@@ -21,7 +21,9 @@ import javax.swing.JOptionPane;
  * @author Jarek
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    
+    private String login;
+    
     /**
      * Creates new form LoginForm
      */
@@ -231,7 +233,7 @@ public class LoginForm extends javax.swing.JFrame {
         PreparedStatement ps;
         
         try {
-            // Połączenie z bazą
+            // MySQL DB Connection
             connection = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
             ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
             ps.setString(1, jTextField_Login.getText());
@@ -240,11 +242,18 @@ public class LoginForm extends javax.swing.JFrame {
             
             if(result.next())
             {
-                JOptionPane.showMessageDialog(this, "Zalogowano poprawnie");
-                dispose();
-            } else
+                this.login = jTextField_Login.getText();
+                
+                AppForm afm = new AppForm();
+                afm.setVisible(true);
+                afm.pack();
+                afm.setLocationRelativeTo(null);
+                afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+            } 
+            else
             {
-                JOptionPane.showMessageDialog(this, "Błąd logowania, wprowadzono niepoprawne dane");
+                JOptionPane.showMessageDialog(this, "Login Error, incorrect username or password");
             }
         } catch (SQLException ex) {
             System.out.println((ex.getStackTrace()));
@@ -256,19 +265,20 @@ public class LoginForm extends javax.swing.JFrame {
         if(jCheckBox1.isSelected())
         {
             jPasswordField_Pass.setEchoChar((char)0);
-        } else
+        } 
+        else
         {
             jPasswordField_Pass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // Zamknięcie okna
+        // Exit window
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // Minimalizacja okna
+        // Iconified window
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabel7MouseClicked
 

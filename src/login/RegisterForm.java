@@ -7,9 +7,6 @@ package login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -315,12 +312,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void jLabel_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LoginMouseClicked
         // Opening LoginForm
-        LoginForm lfm = new LoginForm();
-        lfm.setVisible(true);
-        lfm.pack();
-        lfm.setLocationRelativeTo(null);
-        lfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();  // exit RegisterForm
+        showLoginForm();
     }//GEN-LAST:event_jLabel_LoginMouseClicked
 
     private void jButton_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegisterActionPerformed
@@ -334,13 +326,8 @@ public class RegisterForm extends javax.swing.JFrame {
         // Wpisanie nowego użytkownika do bazy
             try {
                 zapytanieSql("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('"+jTextField_uname.getText()+"','"+jPasswordField_Pass.getText()+"','"+jTextField_fname.getText()+"','"+jTextField_lname.getText()+"','"+jTextField_email.getText()+"',"+jTextField_age.getText()+")");
-                
-                LoginForm lfm = new LoginForm();
-                lfm.setVisible(true);
-                lfm.pack();
-                lfm.setLocationRelativeTo(null);
-                lfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
+                JOptionPane.showMessageDialog(null, "New user added successfully");
+                showLoginForm();
                 
             } catch (Exception e) {
                 System.out.println("Błąd dodania do bazy"+e);
@@ -362,8 +349,8 @@ public class RegisterForm extends javax.swing.JFrame {
 
     public void zapytanieSql(String query)
     {
-        Connection con = null;
-        Statement st = null;
+        Connection con;
+        Statement st;
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/login","root","");
             st = con.createStatement();
@@ -371,6 +358,16 @@ public class RegisterForm extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+    
+    public void showLoginForm()
+    {
+        LoginForm lfm = new LoginForm();
+        lfm.setVisible(true);
+        lfm.pack();
+        lfm.setLocationRelativeTo(null);
+        lfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();    
     }
     
     
