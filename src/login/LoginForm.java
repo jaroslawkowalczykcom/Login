@@ -65,6 +65,7 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jarek\\Documents\\NetBeansProjects\\Login\\login.png")); // NOI18N
 
@@ -81,7 +82,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +91,7 @@ public class LoginForm extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -153,7 +154,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Login:");
+        jLabel6.setText("Username:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(290, 120, 60, 16);
 
@@ -232,7 +233,7 @@ public class LoginForm extends javax.swing.JFrame {
         try {
             // Połączenie z bazą
             connection = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
-            ps = connection.prepareStatement("SELECT `login`, `pass` FROM `login_form` WHERE `login` =? AND `pass` =?");
+            ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
             ps.setString(1, jTextField_Login.getText());
             ps.setString(2, String.valueOf(jPasswordField_Pass.getPassword()));
             ResultSet result = ps.executeQuery();
@@ -247,6 +248,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             System.out.println((ex.getStackTrace()));
+            JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database"+ex);
         }
     }//GEN-LAST:event_jButton_LoginActionPerformed
 
