@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
 public class LoginForm extends javax.swing.JFrame {
     
     private String login;
-    
     /**
      * Creates new form LoginForm
      */
@@ -69,7 +68,7 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jarek\\Documents\\NetBeansProjects\\Login\\login.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

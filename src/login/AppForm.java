@@ -5,23 +5,99 @@
  */
 package login;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author Jarek
  */
-public class AppForm extends javax.swing.JFrame {
-
+public class AppForm extends javax.swing.JFrame
+{
+ 
+    private double addingEating = 0;
+    private double addingMobile = 0;
+    private double addingFlat = 0;
+    private double addingFuel = 0;
+    private double addingTickets = 0;
+    private double addingPayment = 0;
+    private double addingOther = 0;
+    private double addingTotal = 0;
+    
+    
     /**
      * Creates new form AppForm
      */
     public AppForm() {
         initComponents();
+        ShowExpendingsInJTable();
+        ShowTotal();
+
+    }
+    
+    /**
+     * MY OWN METHOD "ADDING VALUES OF COLUMN"
+     * @param addingSomething - variable name (eg.addingEating)
+     * @param col - column of jTable to read (eg. 2)
+     * @return 
+     */
+    public Double addingSomething(double addingSomething, int col)  
+    {
+        TableModel model = jTable_january.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_january.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    // Metod show account balances and sum of columns
+    public void ShowTotal()
+    {
+        double eating = addingSomething(addingEating, 2);
+        double mobile = addingSomething(addingMobile, 3);
+        double flat = addingSomething(addingFlat, 4);
+        double fuel = addingSomething(addingFuel, 5);
+        double tickets = addingSomething(addingTickets, 6);
+        double payment = addingSomething(addingPayment, 7);
+        double other = addingSomething(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+        
+        double incomings = 3000;
+        jTextField_Incomings.setText(Double.toString(incomings));
+        
+        double save = incomings - outgoings;
+        jTextField_Save.setText(Double.toString(save));
+        
+        // Change foreground color depending on save balance
+        if (save < 0){
+            jTextField_Save.setForeground(Color.RED);
+        } else {
+            jTextField_Save.setForeground(Color.GREEN);
+        }   
     }
 
     /**
@@ -43,9 +119,9 @@ public class AppForm extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jTextField_Incomings = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField_Incomings1 = new javax.swing.JTextField();
+        jTextField_Outgoings = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField_Incomings2 = new javax.swing.JTextField();
+        jTextField_Save = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,15 +143,50 @@ public class AppForm extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField_Other = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel_Edit = new javax.swing.JLabel();
+        jLabel_Remove = new javax.swing.JLabel();
+        jLabel_Add = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jTextField_ID = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_january = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable_february = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_march = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_april = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable_may = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable_June = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable_july = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable_august = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable_september = new javax.swing.JTable();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTable_october = new javax.swing.JTable();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable_november = new javax.swing.JTable();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTable_december = new javax.swing.JTable();
+        jLabel_Total1 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel_Eating1 = new javax.swing.JLabel();
+        jLabel_Mobile1 = new javax.swing.JLabel();
+        jLabel_Flat1 = new javax.swing.JLabel();
+        jLabel_Fuel1 = new javax.swing.JLabel();
+        jLabel_Tickets1 = new javax.swing.JLabel();
+        jLabel_Payment1 = new javax.swing.JLabel();
+        jLabel_Other1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(820, 500));
+        setPreferredSize(new java.awt.Dimension(850, 500));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,7 +211,7 @@ public class AppForm extends javax.swing.JFrame {
         jLabel_Lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Lname.setText("LastName");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jarek\\Documents\\NetBeansProjects\\Login\\user.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -123,35 +234,36 @@ public class AppForm extends javax.swing.JFrame {
         jLabel17.setText("Total Incomings:");
 
         jTextField_Incomings.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jTextField_Incomings.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Incomings.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Incomings.setText("3200.0");
-        jTextField_Incomings.setToolTipText("Type your last name");
+        jTextField_Incomings.setToolTipText("Total Incomings");
         jTextField_Incomings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField_Incomings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_IncomingsActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Total Outgoings:");
 
-        jTextField_Incomings1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jTextField_Incomings1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField_Incomings1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Incomings1.setText("1965.7");
-        jTextField_Incomings1.setToolTipText("Type your last name");
-        jTextField_Incomings1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField_Outgoings.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jTextField_Outgoings.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField_Outgoings.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField_Outgoings.setToolTipText("Total outgoings");
+        jTextField_Outgoings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel19.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("You Save Up:");
 
-        jTextField_Incomings2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jTextField_Incomings2.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField_Incomings2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Incomings2.setText("1965.7");
-        jTextField_Incomings2.setToolTipText("Type your last name");
-        jTextField_Incomings2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField_Save.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jTextField_Save.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField_Save.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField_Save.setToolTipText("You save");
+        jTextField_Save.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,7 +279,7 @@ public class AppForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField_Incomings1)
+                            .addComponent(jTextField_Outgoings)
                             .addComponent(jTextField_Incomings)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                             .addComponent(jLabel_Fname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,7 +289,7 @@ public class AppForm extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField_Incomings2))
+                            .addComponent(jTextField_Save))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -200,11 +312,11 @@ public class AppForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_Incomings1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_Outgoings, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_Incomings2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
@@ -240,7 +352,7 @@ public class AppForm extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(780, 0, 44, 44);
+        jPanel3.setBounds(810, 0, 44, 44);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -253,7 +365,7 @@ public class AppForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(760, 0, 20, 40);
+        jLabel2.setBounds(790, 0, 20, 40);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
@@ -263,7 +375,6 @@ public class AppForm extends javax.swing.JFrame {
         jTextField_Date.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Date.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Date.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Date.setText("12/01/2018");
         jTextField_Date.setToolTipText("Type your last name");
         jTextField_Date.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
@@ -275,7 +386,6 @@ public class AppForm extends javax.swing.JFrame {
         jTextField_Eating.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Eating.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Eating.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Eating.setText("543.0");
         jTextField_Eating.setToolTipText("Type your last name");
         jTextField_Eating.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
@@ -287,14 +397,12 @@ public class AppForm extends javax.swing.JFrame {
         jTextField_Mobile.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Mobile.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Mobile.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Mobile.setText("76.0");
         jTextField_Mobile.setToolTipText("Type your last name");
         jTextField_Mobile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jTextField_Flat.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Flat.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Flat.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Flat.setText("1000.0");
         jTextField_Flat.setToolTipText("Type your last name");
         jTextField_Flat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
@@ -311,7 +419,6 @@ public class AppForm extends javax.swing.JFrame {
         jTextField_Fuel.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Fuel.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Fuel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Fuel.setText("435.8");
         jTextField_Fuel.setToolTipText("Type your last name");
         jTextField_Fuel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
@@ -323,14 +430,12 @@ public class AppForm extends javax.swing.JFrame {
         jTextField_Tickets.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Tickets.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Tickets.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Tickets.setText("120.0");
         jTextField_Tickets.setToolTipText("Type your last name");
         jTextField_Tickets.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jTextField_Payment.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Payment.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Payment.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Payment.setText("546.0");
         jTextField_Payment.setToolTipText("Type your last name");
         jTextField_Payment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
@@ -347,7 +452,6 @@ public class AppForm extends javax.swing.JFrame {
         jTextField_Other.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Other.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Other.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Other.setText("243.0");
         jTextField_Other.setToolTipText("Type your last name");
         jTextField_Other.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
@@ -356,7 +460,43 @@ public class AppForm extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Your expendings:");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jarek\\Documents\\NetBeansProjects\\Login\\mod.png")); // NOI18N
+        jLabel_Edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/mod.png"))); // NOI18N
+        jLabel_Edit.setToolTipText("Edit");
+        jLabel_Edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EditMouseClicked(evt);
+            }
+        });
+
+        jLabel_Remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
+        jLabel_Remove.setToolTipText("Remove");
+        jLabel_Remove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Remove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_RemoveMouseClicked(evt);
+            }
+        });
+
+        jLabel_Add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jLabel_Add.setToolTipText("Add");
+        jLabel_Add.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_AddMouseClicked(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel16.setText("ID:");
+
+        jTextField_ID.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTextField_ID.setForeground(new java.awt.Color(51, 51, 51));
+        jTextField_ID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField_ID.setToolTipText("Type your last name");
+        jTextField_ID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -366,10 +506,22 @@ public class AppForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField_Eating, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -396,104 +548,642 @@ public class AppForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField_Other, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextField_Other, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_Other, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_Payment, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_Tickets, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_Fuel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_Flat, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField_Mobile, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
+                            .addComponent(jLabel14)
                             .addGap(4, 4, 4)
-                            .addComponent(jTextField_Eating, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField_Other, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
+                            .addComponent(jLabel13)
                             .addGap(4, 4, 4)
-                            .addComponent(jTextField_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(jTextField_Payment, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addGap(4, 4, 4)
+                            .addComponent(jTextField_Tickets, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addGap(4, 4, 4)
+                            .addComponent(jTextField_Fuel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addGap(4, 4, 4)
+                            .addComponent(jTextField_Flat, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(4, 4, 4)
+                            .addComponent(jTextField_Mobile, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(4, 4, 4)
+                                .addComponent(jTextField_Eating, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel16))
+                                .addGap(4, 4, 4)
+                                .addComponent(jTextField_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(200, 50, 620, 120);
+        jPanel4.setBounds(200, 50, 650, 100);
 
-        jLabel15.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Expenditure Management System");
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(200, 10, 520, 40);
+        jLabel15.setBounds(200, 0, 580, 50);
+
+        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         jTable_january.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTable_january.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Paymen", "Other"
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_january.getTableHeader().setReorderingAllowed(false);
+        jTable_january.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_januaryMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_january);
+        if (jTable_january.getColumnModel().getColumnCount() > 0) {
+            jTable_january.getColumnModel().getColumn(0).setResizable(false);
+            jTable_january.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_january.getColumnModel().getColumn(1).setResizable(false);
+            jTable_january.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_january.getColumnModel().getColumn(2).setResizable(false);
+            jTable_january.getColumnModel().getColumn(3).setResizable(false);
+            jTable_january.getColumnModel().getColumn(4).setResizable(false);
+            jTable_january.getColumnModel().getColumn(5).setResizable(false);
+            jTable_january.getColumnModel().getColumn(6).setResizable(false);
+            jTable_january.getColumnModel().getColumn(7).setResizable(false);
+            jTable_january.getColumnModel().getColumn(8).setResizable(false);
+            jTable_january.getColumnModel().getColumn(9).setResizable(false);
+        }
 
         jTabbedPane1.addTab("January 2018", jScrollPane1);
 
+        jTable_february.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_february.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_february.getTableHeader().setReorderingAllowed(false);
+        jTable_february.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_februaryMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable_february);
+        if (jTable_february.getColumnModel().getColumnCount() > 0) {
+            jTable_february.getColumnModel().getColumn(0).setResizable(false);
+            jTable_february.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_february.getColumnModel().getColumn(1).setResizable(false);
+            jTable_february.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_february.getColumnModel().getColumn(2).setResizable(false);
+            jTable_february.getColumnModel().getColumn(3).setResizable(false);
+            jTable_february.getColumnModel().getColumn(4).setResizable(false);
+            jTable_february.getColumnModel().getColumn(5).setResizable(false);
+            jTable_february.getColumnModel().getColumn(6).setResizable(false);
+            jTable_february.getColumnModel().getColumn(7).setResizable(false);
+            jTable_february.getColumnModel().getColumn(8).setResizable(false);
+            jTable_february.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("February 2018", jScrollPane2);
+
+        jTable_march.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_march.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_march.getTableHeader().setReorderingAllowed(false);
+        jTable_march.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_marchMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable_march);
+        if (jTable_march.getColumnModel().getColumnCount() > 0) {
+            jTable_march.getColumnModel().getColumn(0).setResizable(false);
+            jTable_march.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_march.getColumnModel().getColumn(1).setResizable(false);
+            jTable_march.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_march.getColumnModel().getColumn(2).setResizable(false);
+            jTable_march.getColumnModel().getColumn(3).setResizable(false);
+            jTable_march.getColumnModel().getColumn(4).setResizable(false);
+            jTable_march.getColumnModel().getColumn(5).setResizable(false);
+            jTable_march.getColumnModel().getColumn(6).setResizable(false);
+            jTable_march.getColumnModel().getColumn(7).setResizable(false);
+            jTable_march.getColumnModel().getColumn(8).setResizable(false);
+            jTable_march.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("March 2018", jScrollPane3);
+
+        jTable_april.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_april.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_april.getTableHeader().setReorderingAllowed(false);
+        jTable_april.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_aprilMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable_april);
+        if (jTable_april.getColumnModel().getColumnCount() > 0) {
+            jTable_april.getColumnModel().getColumn(0).setResizable(false);
+            jTable_april.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_april.getColumnModel().getColumn(1).setResizable(false);
+            jTable_april.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_april.getColumnModel().getColumn(2).setResizable(false);
+            jTable_april.getColumnModel().getColumn(3).setResizable(false);
+            jTable_april.getColumnModel().getColumn(4).setResizable(false);
+            jTable_april.getColumnModel().getColumn(5).setResizable(false);
+            jTable_april.getColumnModel().getColumn(6).setResizable(false);
+            jTable_april.getColumnModel().getColumn(7).setResizable(false);
+            jTable_april.getColumnModel().getColumn(8).setResizable(false);
+            jTable_april.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("April 2018", jScrollPane4);
+
+        jTable_may.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_may.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_may.getTableHeader().setReorderingAllowed(false);
+        jTable_may.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_mayMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jTable_may);
+        if (jTable_may.getColumnModel().getColumnCount() > 0) {
+            jTable_may.getColumnModel().getColumn(0).setResizable(false);
+            jTable_may.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_may.getColumnModel().getColumn(1).setResizable(false);
+            jTable_may.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_may.getColumnModel().getColumn(2).setResizable(false);
+            jTable_may.getColumnModel().getColumn(3).setResizable(false);
+            jTable_may.getColumnModel().getColumn(4).setResizable(false);
+            jTable_may.getColumnModel().getColumn(5).setResizable(false);
+            jTable_may.getColumnModel().getColumn(6).setResizable(false);
+            jTable_may.getColumnModel().getColumn(7).setResizable(false);
+            jTable_may.getColumnModel().getColumn(8).setResizable(false);
+            jTable_may.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("May 2018", jScrollPane5);
+
+        jTable_June.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_June.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_June.getTableHeader().setReorderingAllowed(false);
+        jTable_June.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_JuneMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTable_June);
+        if (jTable_June.getColumnModel().getColumnCount() > 0) {
+            jTable_June.getColumnModel().getColumn(0).setResizable(false);
+            jTable_June.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_June.getColumnModel().getColumn(1).setResizable(false);
+            jTable_June.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_June.getColumnModel().getColumn(2).setResizable(false);
+            jTable_June.getColumnModel().getColumn(3).setResizable(false);
+            jTable_June.getColumnModel().getColumn(4).setResizable(false);
+            jTable_June.getColumnModel().getColumn(5).setResizable(false);
+            jTable_June.getColumnModel().getColumn(6).setResizable(false);
+            jTable_June.getColumnModel().getColumn(7).setResizable(false);
+            jTable_June.getColumnModel().getColumn(8).setResizable(false);
+            jTable_June.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("June 2018", jScrollPane6);
+
+        jTable_july.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_july.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_july.getTableHeader().setReorderingAllowed(false);
+        jTable_july.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_julyMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(jTable_july);
+        if (jTable_july.getColumnModel().getColumnCount() > 0) {
+            jTable_july.getColumnModel().getColumn(0).setResizable(false);
+            jTable_july.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_july.getColumnModel().getColumn(1).setResizable(false);
+            jTable_july.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_july.getColumnModel().getColumn(2).setResizable(false);
+            jTable_july.getColumnModel().getColumn(3).setResizable(false);
+            jTable_july.getColumnModel().getColumn(4).setResizable(false);
+            jTable_july.getColumnModel().getColumn(5).setResizable(false);
+            jTable_july.getColumnModel().getColumn(6).setResizable(false);
+            jTable_july.getColumnModel().getColumn(7).setResizable(false);
+            jTable_july.getColumnModel().getColumn(8).setResizable(false);
+            jTable_july.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("July 2018", jScrollPane7);
+
+        jTable_august.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_august.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_august.getTableHeader().setReorderingAllowed(false);
+        jTable_august.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_augustMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(jTable_august);
+        if (jTable_august.getColumnModel().getColumnCount() > 0) {
+            jTable_august.getColumnModel().getColumn(0).setResizable(false);
+            jTable_august.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_august.getColumnModel().getColumn(1).setResizable(false);
+            jTable_august.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_august.getColumnModel().getColumn(2).setResizable(false);
+            jTable_august.getColumnModel().getColumn(3).setResizable(false);
+            jTable_august.getColumnModel().getColumn(4).setResizable(false);
+            jTable_august.getColumnModel().getColumn(5).setResizable(false);
+            jTable_august.getColumnModel().getColumn(6).setResizable(false);
+            jTable_august.getColumnModel().getColumn(7).setResizable(false);
+            jTable_august.getColumnModel().getColumn(8).setResizable(false);
+            jTable_august.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("August 2018", jScrollPane8);
+
+        jTable_september.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_september.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_september.getTableHeader().setReorderingAllowed(false);
+        jTable_september.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_septemberMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(jTable_september);
+        if (jTable_september.getColumnModel().getColumnCount() > 0) {
+            jTable_september.getColumnModel().getColumn(0).setResizable(false);
+            jTable_september.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_september.getColumnModel().getColumn(1).setResizable(false);
+            jTable_september.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_september.getColumnModel().getColumn(2).setResizable(false);
+            jTable_september.getColumnModel().getColumn(3).setResizable(false);
+            jTable_september.getColumnModel().getColumn(4).setResizable(false);
+            jTable_september.getColumnModel().getColumn(5).setResizable(false);
+            jTable_september.getColumnModel().getColumn(6).setResizable(false);
+            jTable_september.getColumnModel().getColumn(7).setResizable(false);
+            jTable_september.getColumnModel().getColumn(8).setResizable(false);
+            jTable_september.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("September 2018", jScrollPane9);
+
+        jTable_october.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_october.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_october.getTableHeader().setReorderingAllowed(false);
+        jTable_october.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_octoberMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(jTable_october);
+        if (jTable_october.getColumnModel().getColumnCount() > 0) {
+            jTable_october.getColumnModel().getColumn(0).setResizable(false);
+            jTable_october.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_october.getColumnModel().getColumn(1).setResizable(false);
+            jTable_october.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_october.getColumnModel().getColumn(2).setResizable(false);
+            jTable_october.getColumnModel().getColumn(3).setResizable(false);
+            jTable_october.getColumnModel().getColumn(4).setResizable(false);
+            jTable_october.getColumnModel().getColumn(5).setResizable(false);
+            jTable_october.getColumnModel().getColumn(6).setResizable(false);
+            jTable_october.getColumnModel().getColumn(7).setResizable(false);
+            jTable_october.getColumnModel().getColumn(8).setResizable(false);
+            jTable_october.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("October 2018", jScrollPane10);
+
+        jTable_november.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_november.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_november.getTableHeader().setReorderingAllowed(false);
+        jTable_november.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_novemberMouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(jTable_november);
+        if (jTable_november.getColumnModel().getColumnCount() > 0) {
+            jTable_november.getColumnModel().getColumn(0).setResizable(false);
+            jTable_november.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_november.getColumnModel().getColumn(1).setResizable(false);
+            jTable_november.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_november.getColumnModel().getColumn(2).setResizable(false);
+            jTable_november.getColumnModel().getColumn(3).setResizable(false);
+            jTable_november.getColumnModel().getColumn(4).setResizable(false);
+            jTable_november.getColumnModel().getColumn(5).setResizable(false);
+            jTable_november.getColumnModel().getColumn(6).setResizable(false);
+            jTable_november.getColumnModel().getColumn(7).setResizable(false);
+            jTable_november.getColumnModel().getColumn(8).setResizable(false);
+            jTable_november.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("November 2018", jScrollPane11);
+
+        jTable_december.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_december.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Date", "Eating", "Mobile", "Flat", "Fuel", "Tickets", "Payment", "Other", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_december.getTableHeader().setReorderingAllowed(false);
+        jTable_december.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_decemberMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(jTable_december);
+        if (jTable_december.getColumnModel().getColumnCount() > 0) {
+            jTable_december.getColumnModel().getColumn(0).setResizable(false);
+            jTable_december.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_december.getColumnModel().getColumn(1).setResizable(false);
+            jTable_december.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_december.getColumnModel().getColumn(2).setResizable(false);
+            jTable_december.getColumnModel().getColumn(3).setResizable(false);
+            jTable_december.getColumnModel().getColumn(4).setResizable(false);
+            jTable_december.getColumnModel().getColumn(5).setResizable(false);
+            jTable_december.getColumnModel().getColumn(6).setResizable(false);
+            jTable_december.getColumnModel().getColumn(7).setResizable(false);
+            jTable_december.getColumnModel().getColumn(8).setResizable(false);
+            jTable_december.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        jTabbedPane1.addTab("December 2018", jScrollPane12);
+
         jPanel1.add(jTabbedPane1);
-        jTabbedPane1.setBounds(210, 180, 600, 310);
+        jTabbedPane1.setBounds(210, 160, 630, 310);
+
+        jLabel_Total1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Total1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Total1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Total1.setText("0.0");
+        jPanel1.add(jLabel_Total1);
+        jLabel_Total1.setBounds(760, 470, 60, 20);
+
+        jLabel21.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("SUM:");
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(240, 470, 80, 20);
+
+        jLabel_Eating1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Eating1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Eating1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Eating1.setText("0.0");
+        jPanel1.add(jLabel_Eating1);
+        jLabel_Eating1.setBounds(320, 470, 60, 20);
+
+        jLabel_Mobile1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Mobile1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Mobile1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Mobile1.setText("0.0");
+        jPanel1.add(jLabel_Mobile1);
+        jLabel_Mobile1.setBounds(380, 470, 60, 20);
+
+        jLabel_Flat1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Flat1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Flat1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Flat1.setText("0.0");
+        jPanel1.add(jLabel_Flat1);
+        jLabel_Flat1.setBounds(450, 470, 60, 20);
+
+        jLabel_Fuel1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Fuel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Fuel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Fuel1.setText("0.0");
+        jPanel1.add(jLabel_Fuel1);
+        jLabel_Fuel1.setBounds(510, 470, 60, 20);
+
+        jLabel_Tickets1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Tickets1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Tickets1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Tickets1.setText("0.0");
+        jPanel1.add(jLabel_Tickets1);
+        jLabel_Tickets1.setBounds(570, 470, 60, 20);
+
+        jLabel_Payment1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Payment1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Payment1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Payment1.setText("0.0");
+        jPanel1.add(jLabel_Payment1);
+        jLabel_Payment1.setBounds(630, 470, 60, 20);
+
+        jLabel_Other1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel_Other1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Other1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_Other1.setText("0.0");
+        jPanel1.add(jLabel_Other1);
+        jLabel_Other1.setBounds(690, 470, 60, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(820, 500));
+        setSize(new java.awt.Dimension(850, 500));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -507,19 +1197,168 @@ public class AppForm extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    public void zapytanieSql(String query)
+    private void jLabel_EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EditMouseClicked
+        String query = "UPDATE `1_january_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+        executeSQlQuery(query, "Updated");
+    }//GEN-LAST:event_jLabel_EditMouseClicked
+
+    private void jTable_januaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_januaryMouseClicked
+        // Show Expendings in TextFields
+        int i = jTable_january.getSelectedRow();
+        TableModel model = jTable_january.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
+    }//GEN-LAST:event_jTable_januaryMouseClicked
+
+    private void jLabel_RemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RemoveMouseClicked
+        String query = "DELETE FROM `1_january_2018` WHERE id ="+jTextField_ID.getText();   
+        executeSQlQuery(query, "Deleted");
+    }//GEN-LAST:event_jLabel_RemoveMouseClicked
+
+    private void jLabel_AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AddMouseClicked
+        String query = "INSERT INTO `1_january_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+        executeSQlQuery(query, "Added");        
+    }//GEN-LAST:event_jLabel_AddMouseClicked
+
+    private void jTextField_IncomingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IncomingsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IncomingsActionPerformed
+
+    private void jTable_februaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_februaryMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_februaryMouseClicked
+
+    private void jTable_marchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_marchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_marchMouseClicked
+
+    private void jTable_aprilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_aprilMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_aprilMouseClicked
+
+    private void jTable_mayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_mayMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_mayMouseClicked
+
+    private void jTable_JuneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_JuneMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_JuneMouseClicked
+
+    private void jTable_julyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_julyMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_julyMouseClicked
+
+    private void jTable_augustMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_augustMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_augustMouseClicked
+
+    private void jTable_septemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_septemberMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_septemberMouseClicked
+
+    private void jTable_octoberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_octoberMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_octoberMouseClicked
+
+    private void jTable_novemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_novemberMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_novemberMouseClicked
+
+    private void jTable_decemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_decemberMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_decemberMouseClicked
+
+    public Connection getConnection()
     {
         Connection con;
-        Statement st;
+        
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/login","root","");
-            st = con.createStatement();
-            st.executeUpdate(query);
+            con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+            return con;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+            e.printStackTrace();
+            return null;
+        }   
     }
     
+    public ArrayList<Expending> getExpendingsList()
+    {
+        ArrayList<Expending> expendingsList = new ArrayList<Expending>();
+        Connection connection = getConnection();
+        
+        String query = "SELECT * FROM `1_january_2018`"; 
+        Statement st;
+        ResultSet rs;
+        
+            try 
+            { 
+            st = connection.createStatement();
+            rs = st.executeQuery(query);
+            Expending expending;
+            while(rs.next())
+            {
+                expending = new Expending(rs.getInt("id"), rs.getString("date"), rs.getDouble("eating"), rs.getDouble("mobile"), rs.getDouble("flat"), rs.getDouble("fuel"), rs.getDouble("tickets"), rs.getDouble("payment"), rs.getDouble("other"), rs.getDouble("total"));
+                expendingsList.add(expending);
+            }
+            } catch (Exception e) 
+            {
+            e.printStackTrace();
+            }
+            return expendingsList;
+    }
+    
+    public void ShowExpendingsInJTable()   
+    {
+        ArrayList<Expending> list = getExpendingsList();
+        DefaultTableModel model = (DefaultTableModel)jTable_january.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }  
+    
+    public void executeSQlQuery (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                //Odświeżenie danych w tabeli
+                DefaultTableModel model = (DefaultTableModel)jTable_january.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable();
+                ShowTotal();
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -570,32 +1409,67 @@ public class AppForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_Add;
+    private javax.swing.JLabel jLabel_Eating1;
+    private javax.swing.JLabel jLabel_Edit;
+    private javax.swing.JLabel jLabel_Flat1;
     private javax.swing.JLabel jLabel_Fname;
+    private javax.swing.JLabel jLabel_Fuel1;
     private javax.swing.JLabel jLabel_Lname;
+    private javax.swing.JLabel jLabel_Mobile1;
+    private javax.swing.JLabel jLabel_Other1;
+    private javax.swing.JLabel jLabel_Payment1;
+    private javax.swing.JLabel jLabel_Remove;
+    private javax.swing.JLabel jLabel_Tickets1;
+    private javax.swing.JLabel jLabel_Total1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable_June;
+    private javax.swing.JTable jTable_april;
+    private javax.swing.JTable jTable_august;
+    private javax.swing.JTable jTable_december;
+    private javax.swing.JTable jTable_february;
     private javax.swing.JTable jTable_january;
+    private javax.swing.JTable jTable_july;
+    private javax.swing.JTable jTable_march;
+    private javax.swing.JTable jTable_may;
+    private javax.swing.JTable jTable_november;
+    private javax.swing.JTable jTable_october;
+    private javax.swing.JTable jTable_september;
     private javax.swing.JTextField jTextField_Date;
     private javax.swing.JTextField jTextField_Eating;
     private javax.swing.JTextField jTextField_Flat;
     private javax.swing.JTextField jTextField_Fuel;
+    private javax.swing.JTextField jTextField_ID;
     private javax.swing.JTextField jTextField_Incomings;
-    private javax.swing.JTextField jTextField_Incomings1;
-    private javax.swing.JTextField jTextField_Incomings2;
     private javax.swing.JTextField jTextField_Mobile;
     private javax.swing.JTextField jTextField_Other;
+    private javax.swing.JTextField jTextField_Outgoings;
     private javax.swing.JTextField jTextField_Payment;
+    private javax.swing.JTextField jTextField_Save;
     private javax.swing.JTextField jTextField_Tickets;
     // End of variables declaration//GEN-END:variables
 }
