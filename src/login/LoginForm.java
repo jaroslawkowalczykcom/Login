@@ -10,9 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -22,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginForm extends javax.swing.JFrame {
     
-    private String login;
+    
     /**
      * Creates new form LoginForm
      */
@@ -241,9 +238,9 @@ public class LoginForm extends javax.swing.JFrame {
             
             if(result.next())
             {
-                this.login = jTextField_Login.getText();
+                String userName = jTextField_Login.getText();
                 
-                AppForm afm = new AppForm();
+                AppForm afm = new AppForm(userName); 
                 afm.setVisible(true);
                 afm.pack();
                 afm.setLocationRelativeTo(null);

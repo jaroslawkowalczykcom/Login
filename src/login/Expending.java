@@ -2,16 +2,16 @@ package login;
 
 public class Expending 
 {
-    private int id;
-    private String date;
-    private double eating;
-    private double mobile;
-    private double flat;
-    private double fuel;
-    private double tickets;
-    private double payment;
-    private double other;
-    private double total;
+    private final int id;
+    private final String date;
+    private final double eating;
+    private final double mobile;
+    private final double flat;
+    private final double fuel;
+    private final double tickets;
+    private final double payment;
+    private final double other;
+    private final double total;
     
     public Expending(int id, String date, double eating, double mobile, double flat, double fuel, double tickets, double payment, double other, double total)
     {
