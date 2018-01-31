@@ -23,19 +23,90 @@ public class AppForm extends javax.swing.JFrame
     private final double addingOther = 0;
     private final double addingTotal = 0;
     
+    private final String january = "january";
+    private final String february = "february";
+    private final String march = "march";
+    private final String april = "april";
+    private final String may = "may";
+    private final String june = "june";
+    private final String july = "july";
+    private final String august = "august";
+    private final String september = "september";
+    private final String october = "october";
+    private final String november = "november";
+    private final String december = "december";
+    
     public AppForm() 
     {
         initComponents();
-        ShowExpendingsInJTable();
     }
     
     public AppForm(String userName)
     {
         initComponents();
-        ShowExpendingsInJTable();
-        ShowTotal();
         jLabel_UserName.setText(userName);
-        ShowUserIncomingsSave();
+        
+//        if(jTable_january.isShowing())
+//        {
+        ShowExpendingsInJTable_January();
+        ShowTotal_January();
+        ShowUserIncomingsSave(january);           
+//        } else if(jTable_february.isShowing())
+//        {
+        ShowExpendingsInJTable_February();
+        ShowTotal_February();
+        ShowUserIncomingsSave(february);            
+//        } else if(jTable_march.isShowing())
+//        {
+        ShowExpendingsInJTable_March();
+        ShowTotal_March();
+        ShowUserIncomingsSave(march);            
+//        } else if(jTable_april.isShowing())
+//        {
+        ShowExpendingsInJTable_April();
+        ShowTotal_April();
+        ShowUserIncomingsSave(april);            
+//        } else if(jTable_may.isShowing())
+//        {
+        ShowExpendingsInJTable_May();
+        ShowTotal_May();
+        ShowUserIncomingsSave(may);            
+//        } else if(jTable_june.isShowing())
+//        {
+        ShowExpendingsInJTable_June();
+        ShowTotal_June();
+        ShowUserIncomingsSave(june);            
+//        } else if(jTable_july.isShowing())
+//        {
+        ShowExpendingsInJTable_July();
+        ShowTotal_July();
+        ShowUserIncomingsSave(july);            
+//        } else if(jTable_august.isShowing())
+//        {
+        ShowExpendingsInJTable_August();
+        ShowTotal_August();
+        ShowUserIncomingsSave(august);            
+//        } else if(jTable_september.isShowing())
+//        {
+        ShowExpendingsInJTable_September();
+        ShowTotal_September();
+        ShowUserIncomingsSave(september);            
+//        } else if(jTable_october.isShowing())
+//        {
+        ShowExpendingsInJTable_October();
+        ShowTotal_October();
+        ShowUserIncomingsSave(october);            
+//        } else if(jTable_november.isShowing())
+//        {
+        ShowExpendingsInJTable_November();
+        ShowTotal_November();
+        ShowUserIncomingsSave(november);            
+//        } else if(jTable_december.isShowing())
+//        {
+        ShowExpendingsInJTable_December();
+        ShowTotal_December();
+        ShowUserIncomingsSave(december);            
+//        }  
     }
     
     /**
@@ -44,7 +115,7 @@ public class AppForm extends javax.swing.JFrame
      * @param col - column of jTable to read (eg. 2)
      * @return 
      */
-    public Double addingSomething(double addingSomething, int col)  
+    public Double addingSomething_January(double addingSomething, int col)  
     {
         TableModel model = jTable_january.getModel();
         double add = 0;
@@ -55,17 +126,149 @@ public class AppForm extends javax.swing.JFrame
         }
         return addingSomething;
     }
+
+    public Double addingSomething_February(double addingSomething, int col)  
+    {
+        TableModel model = jTable_february.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_february.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_March(double addingSomething, int col)  
+    {
+        TableModel model = jTable_march.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_march.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_April(double addingSomething, int col)  
+    {
+        TableModel model = jTable_april.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_april.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_May(double addingSomething, int col)  
+    {
+        TableModel model = jTable_may.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_may.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_June(double addingSomething, int col)  
+    {
+        TableModel model = jTable_june.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_june.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_July(double addingSomething, int col)  
+    {
+        TableModel model = jTable_july.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_july.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_August(double addingSomething, int col)  
+    {
+        TableModel model = jTable_august.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_august.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_September(double addingSomething, int col)  
+    {
+        TableModel model = jTable_september.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_september.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_October(double addingSomething, int col)  
+    {
+        TableModel model = jTable_october.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_october.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_November(double addingSomething, int col)  
+    {
+        TableModel model = jTable_november.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_november.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
+    
+    public Double addingSomething_December(double addingSomething, int col)  
+    {
+        TableModel model = jTable_december.getModel();
+        double add = 0;
+        for(int i = 0; i < jTable_december.getRowCount(); i++)  
+        {   
+            add = (double)model.getValueAt(i, col);
+            addingSomething += add;
+        }
+        return addingSomething;
+    }
     
     // Method show account balances and sum of columns
-    public void ShowTotal()
+    public void ShowTotal_January()
     {
-        double eating = addingSomething(addingEating, 2);
-        double mobile = addingSomething(addingMobile, 3);
-        double flat = addingSomething(addingFlat, 4);
-        double fuel = addingSomething(addingFuel, 5);
-        double tickets = addingSomething(addingTickets, 6);
-        double payment = addingSomething(addingPayment, 7);
-        double other = addingSomething(addingOther, 8);
+        double eating = addingSomething_January(addingEating, 2);
+        double mobile = addingSomething_January(addingMobile, 3);
+        double flat = addingSomething_January(addingFlat, 4);
+        double fuel = addingSomething_January(addingFuel, 5);
+        double tickets = addingSomething_January(addingTickets, 6);
+        double payment = addingSomething_January(addingPayment, 7);
+        double other = addingSomething_January(addingOther, 8);
         
         jLabel_Eating1.setText(Double.toString(eating));
         jLabel_Mobile1.setText(Double.toString(mobile));
@@ -75,11 +278,266 @@ public class AppForm extends javax.swing.JFrame
         jLabel_Payment1.setText(Double.toString(payment));
         jLabel_Other1.setText(Double.toString(other));
         
-        double outgoings = addingSomething(addingTotal, 9);
+        double outgoings = addingSomething_January(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_February()
+    {
+        double eating = addingSomething_February(addingEating, 2);
+        double mobile = addingSomething_February(addingMobile, 3);
+        double flat = addingSomething_February(addingFlat, 4);
+        double fuel = addingSomething_February(addingFuel, 5);
+        double tickets = addingSomething_February(addingTickets, 6);
+        double payment = addingSomething_February(addingPayment, 7);
+        double other = addingSomething_February(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_February(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_March()
+    {
+        double eating = addingSomething_March(addingEating, 2);
+        double mobile = addingSomething_March(addingMobile, 3);
+        double flat = addingSomething_March(addingFlat, 4);
+        double fuel = addingSomething_March(addingFuel, 5);
+        double tickets = addingSomething_March(addingTickets, 6);
+        double payment = addingSomething_March(addingPayment, 7);
+        double other = addingSomething_March(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_March(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_April()
+    {
+        double eating = addingSomething_April(addingEating, 2);
+        double mobile = addingSomething_April(addingMobile, 3);
+        double flat = addingSomething_April(addingFlat, 4);
+        double fuel = addingSomething_April(addingFuel, 5);
+        double tickets = addingSomething_April(addingTickets, 6);
+        double payment = addingSomething_April(addingPayment, 7);
+        double other = addingSomething_April(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_April(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_May()
+    {
+        double eating = addingSomething_May(addingEating, 2);
+        double mobile = addingSomething_May(addingMobile, 3);
+        double flat = addingSomething_May(addingFlat, 4);
+        double fuel = addingSomething_May(addingFuel, 5);
+        double tickets = addingSomething_May(addingTickets, 6);
+        double payment = addingSomething_May(addingPayment, 7);
+        double other = addingSomething_May(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_May(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_June()
+    {
+        double eating = addingSomething_June(addingEating, 2);
+        double mobile = addingSomething_June(addingMobile, 3);
+        double flat = addingSomething_June(addingFlat, 4);
+        double fuel = addingSomething_June(addingFuel, 5);
+        double tickets = addingSomething_June(addingTickets, 6);
+        double payment = addingSomething_June(addingPayment, 7);
+        double other = addingSomething_June(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_June(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_July()
+    {
+        double eating = addingSomething_July(addingEating, 2);
+        double mobile = addingSomething_July(addingMobile, 3);
+        double flat = addingSomething_July(addingFlat, 4);
+        double fuel = addingSomething_July(addingFuel, 5);
+        double tickets = addingSomething_July(addingTickets, 6);
+        double payment = addingSomething_July(addingPayment, 7);
+        double other = addingSomething_July(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_July(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_August()
+    {
+        double eating = addingSomething_August(addingEating, 2);
+        double mobile = addingSomething_August(addingMobile, 3);
+        double flat = addingSomething_August(addingFlat, 4);
+        double fuel = addingSomething_August(addingFuel, 5);
+        double tickets = addingSomething_August(addingTickets, 6);
+        double payment = addingSomething_August(addingPayment, 7);
+        double other = addingSomething_August(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_August(addingTotal, 9);
         jTextField_Outgoings.setText(Double.toString(outgoings));
         jLabel_Total1.setText(Double.toString(outgoings));
     }
 
+    public void ShowTotal_September()
+    {
+        double eating = addingSomething_September(addingEating, 2);
+        double mobile = addingSomething_September(addingMobile, 3);
+        double flat = addingSomething_September(addingFlat, 4);
+        double fuel = addingSomething_September(addingFuel, 5);
+        double tickets = addingSomething_September(addingTickets, 6);
+        double payment = addingSomething_September(addingPayment, 7);
+        double other = addingSomething_September(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_September(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_October()
+    {
+        double eating = addingSomething_October(addingEating, 2);
+        double mobile = addingSomething_October(addingMobile, 3);
+        double flat = addingSomething_October(addingFlat, 4);
+        double fuel = addingSomething_October(addingFuel, 5);
+        double tickets = addingSomething_October(addingTickets, 6);
+        double payment = addingSomething_October(addingPayment, 7);
+        double other = addingSomething_October(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_October(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_November()
+    {
+        double eating = addingSomething_November(addingEating, 2);
+        double mobile = addingSomething_November(addingMobile, 3);
+        double flat = addingSomething_November(addingFlat, 4);
+        double fuel = addingSomething_November(addingFuel, 5);
+        double tickets = addingSomething_November(addingTickets, 6);
+        double payment = addingSomething_November(addingPayment, 7);
+        double other = addingSomething_November(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_November(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }
+    
+    public void ShowTotal_December()
+    {
+        double eating = addingSomething_December(addingEating, 2);
+        double mobile = addingSomething_December(addingMobile, 3);
+        double flat = addingSomething_December(addingFlat, 4);
+        double fuel = addingSomething_December(addingFuel, 5);
+        double tickets = addingSomething_December(addingTickets, 6);
+        double payment = addingSomething_December(addingPayment, 7);
+        double other = addingSomething_December(addingOther, 8);
+        
+        jLabel_Eating1.setText(Double.toString(eating));
+        jLabel_Mobile1.setText(Double.toString(mobile));
+        jLabel_Flat1.setText(Double.toString(flat));
+        jLabel_Fuel1.setText(Double.toString(fuel));
+        jLabel_Tickets1.setText(Double.toString(tickets));
+        jLabel_Payment1.setText(Double.toString(payment));
+        jLabel_Other1.setText(Double.toString(other));
+        
+        double outgoings = addingSomething_December(addingTotal, 9);
+        jTextField_Outgoings.setText(Double.toString(outgoings));
+        jLabel_Total1.setText(Double.toString(outgoings));
+    }    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,10 +561,9 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Save = new javax.swing.JTextField();
         jLabel_refresh = new javax.swing.JLabel();
         jLabel_Logout = new javax.swing.JLabel();
-        jLabel_TEST = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel_Exit = new javax.swing.JLabel();
+        jLabel_Iconified = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTextField_Date = new javax.swing.JTextField();
@@ -143,7 +600,7 @@ public class AppForm extends javax.swing.JFrame
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_may = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable_June = new javax.swing.JTable();
+        jTable_june = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_july = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -259,11 +716,6 @@ public class AppForm extends javax.swing.JFrame
             }
         });
 
-        jLabel_TEST.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jLabel_TEST.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_TEST.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel_TEST.setText("TEST");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -292,8 +744,7 @@ public class AppForm extends javax.swing.JFrame
                                 .addComponent(jLabel_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField_Save)
-                            .addComponent(jLabel_UserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel_TEST, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel_UserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -323,9 +774,7 @@ public class AppForm extends javax.swing.JFrame
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jLabel_TEST)
-                .addGap(26, 26, 26))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -333,14 +782,14 @@ public class AppForm extends javax.swing.JFrame
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("X");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_Exit.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel_Exit.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Exit.setText("X");
+        jLabel_Exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jLabel_ExitMouseClicked(evt);
             }
         });
 
@@ -350,30 +799,30 @@ public class AppForm extends javax.swing.JFrame
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(810, 0, 44, 44);
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("-");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_Iconified.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel_Iconified.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Iconified.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Iconified.setText("-");
+        jLabel_Iconified.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Iconified.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                jLabel_IconifiedMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(790, 0, 20, 40);
+        jPanel1.add(jLabel_Iconified);
+        jLabel_Iconified.setBounds(790, 0, 20, 40);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
@@ -829,8 +1278,8 @@ public class AppForm extends javax.swing.JFrame
 
         jTabbedPane1.addTab("May 2018", jScrollPane5);
 
-        jTable_June.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jTable_June.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_june.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jTable_june.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -846,26 +1295,26 @@ public class AppForm extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
-        jTable_June.getTableHeader().setReorderingAllowed(false);
-        jTable_June.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_june.getTableHeader().setReorderingAllowed(false);
+        jTable_june.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_JuneMouseClicked(evt);
+                jTable_juneMouseClicked(evt);
             }
         });
-        jScrollPane6.setViewportView(jTable_June);
-        if (jTable_June.getColumnModel().getColumnCount() > 0) {
-            jTable_June.getColumnModel().getColumn(0).setResizable(false);
-            jTable_June.getColumnModel().getColumn(0).setPreferredWidth(30);
-            jTable_June.getColumnModel().getColumn(1).setResizable(false);
-            jTable_June.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTable_June.getColumnModel().getColumn(2).setResizable(false);
-            jTable_June.getColumnModel().getColumn(3).setResizable(false);
-            jTable_June.getColumnModel().getColumn(4).setResizable(false);
-            jTable_June.getColumnModel().getColumn(5).setResizable(false);
-            jTable_June.getColumnModel().getColumn(6).setResizable(false);
-            jTable_June.getColumnModel().getColumn(7).setResizable(false);
-            jTable_June.getColumnModel().getColumn(8).setResizable(false);
-            jTable_June.getColumnModel().getColumn(9).setResizable(false);
+        jScrollPane6.setViewportView(jTable_june);
+        if (jTable_june.getColumnModel().getColumnCount() > 0) {
+            jTable_june.getColumnModel().getColumn(0).setResizable(false);
+            jTable_june.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable_june.getColumnModel().getColumn(1).setResizable(false);
+            jTable_june.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable_june.getColumnModel().getColumn(2).setResizable(false);
+            jTable_june.getColumnModel().getColumn(3).setResizable(false);
+            jTable_june.getColumnModel().getColumn(4).setResizable(false);
+            jTable_june.getColumnModel().getColumn(5).setResizable(false);
+            jTable_june.getColumnModel().getColumn(6).setResizable(false);
+            jTable_june.getColumnModel().getColumn(7).setResizable(false);
+            jTable_june.getColumnModel().getColumn(8).setResizable(false);
+            jTable_june.getColumnModel().getColumn(9).setResizable(false);
         }
 
         jTabbedPane1.addTab("June 2018", jScrollPane6);
@@ -1197,19 +1646,66 @@ public class AppForm extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jLabel_ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ExitMouseClicked
         // Exit window
         System.exit(0);
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_jLabel_ExitMouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void jLabel_IconifiedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_IconifiedMouseClicked
         // Iconified window
         this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_jLabel_IconifiedMouseClicked
 
     private void jLabel_EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EditMouseClicked
-        String query = "UPDATE `1_january_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
-        executeSQlQuery(query, "Updated");
+        if(jTable_january.isShowing())
+        {
+            String query = "UPDATE `1_january_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_January(query, "Updated");           
+        } else if(jTable_february.isShowing()) 
+        {
+            String query = "UPDATE `1_february_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_February(query, "Updated");
+        } else if(jTable_march.isShowing())
+        {
+            String query = "UPDATE `1_march_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_March(query, "Updated");           
+        } else if(jTable_april.isShowing())
+        {
+            String query = "UPDATE `1_april_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_April(query, "Updated"); 
+        } else if(jTable_may.isShowing())
+        {
+            String query = "UPDATE `1_may_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_May(query, "Updated");         
+        } else if(jTable_june.isShowing())
+        {
+            String query = "UPDATE `1_june_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_June(query, "Updated");             
+        } else if(jTable_july.isShowing())
+        {
+            String query = "UPDATE `1_july_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_July(query, "Updated");             
+        } else if(jTable_august.isShowing())
+        {
+            String query = "UPDATE `1_august_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_August(query, "Updated");           
+        } else if(jTable_september.isShowing())
+        {
+            String query = "UPDATE `1_september_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_September(query, "Updated");   
+        } else if(jTable_october.isShowing())
+        {
+            String query = "UPDATE `1_october_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_October(query, "Updated"); 
+        } else if(jTable_november.isShowing())
+        {
+            String query = "UPDATE `1_november_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_November(query, "Updated"); 
+        } else if(jTable_december.isShowing())
+        {
+            String query = "UPDATE `1_december_2018` SET `date`='"+jTextField_Date.getText()+"',`eating`='"+jTextField_Eating.getText()+"',`mobile`='"+jTextField_Mobile.getText()+"',`flat`='"+jTextField_Flat.getText()+"',`fuel`='"+jTextField_Fuel.getText()+"',`tickets`='"+jTextField_Tickets.getText()+"',`payment`='"+jTextField_Payment.getText()+"',`other`='"+jTextField_Other.getText()+"' WHERE `id`="+jTextField_ID.getText();
+            executeSQlQuery_December(query, "Updated"); 
+        }       
     }//GEN-LAST:event_jLabel_EditMouseClicked
 
     private void jTable_januaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_januaryMouseClicked
@@ -1228,13 +1724,108 @@ public class AppForm extends javax.swing.JFrame
     }//GEN-LAST:event_jTable_januaryMouseClicked
 
     private void jLabel_RemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RemoveMouseClicked
-        String query = "DELETE FROM `1_january_2018` WHERE id ="+jTextField_ID.getText();   
-        executeSQlQuery(query, "Deleted");
+        if(jTable_january.isShowing())
+        {        
+            String query = "DELETE FROM `1_january_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_January(query, "Deleted");
+        } else if(jTable_february.isShowing()) 
+        {
+            String query = "DELETE FROM `1_february_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_February(query, "Deleted");            
+        } else if(jTable_march.isShowing())
+        {
+            String query = "DELETE FROM `1_march_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_March(query, "Deleted"); 
+        } else if(jTable_april.isShowing())
+        {
+            String query = "DELETE FROM `1_april_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_April(query, "Deleted"); 
+        } else if(jTable_may.isShowing())
+        {
+            String query = "DELETE FROM `1_may_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_May(query, "Deleted"); 
+        } else if(jTable_june.isShowing())
+        {
+            String query = "DELETE FROM `1_june_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_June(query, "Deleted");   
+        } else if(jTable_july.isShowing())
+        {
+            String query = "DELETE FROM `1_july_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_July(query, "Deleted");             
+        } else if(jTable_august.isShowing())
+        {
+            String query = "DELETE FROM `1_august_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_August(query, "Deleted");             
+        } else if(jTable_september.isShowing())
+        {
+            String query = "DELETE FROM `1_september_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_September(query, "Deleted");             
+        } else if(jTable_october.isShowing())
+        {
+            String query = "DELETE FROM `1_october_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_October(query, "Deleted");             
+        } else if(jTable_november.isShowing())
+        {
+            String query = "DELETE FROM `1_november_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_November(query, "Deleted"); 
+        } else if(jTable_december.isShowing())
+        {
+            String query = "DELETE FROM `1_december_2018` WHERE id ="+jTextField_ID.getText();
+            executeSQlQuery_December(query, "Deleted");      
+        }
+        
     }//GEN-LAST:event_jLabel_RemoveMouseClicked
 
     private void jLabel_AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AddMouseClicked
-        String query = "INSERT INTO `1_january_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
-        executeSQlQuery(query, "Added");        
+        if(jTable_january.isShowing())
+        {
+            String query = "INSERT INTO `1_january_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_January(query, "Added"); 
+        } else if (jTable_february.isShowing())        
+        {
+            String query = "INSERT INTO `1_february_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_February(query, "Added"); 
+        } else if (jTable_march.isShowing())
+        {
+            String query = "INSERT INTO `1_march_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_March(query, "Added");            
+        } else if (jTable_april.isShowing())
+        {
+            String query = "INSERT INTO `1_april_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_April(query, "Added");            
+        } else if (jTable_may.isShowing())
+        {
+            String query = "INSERT INTO `1_may_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_May(query, "Added");             
+        } else if (jTable_june.isShowing())
+        {
+            String query = "INSERT INTO `1_june_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_June(query, "Added");             
+        } else if (jTable_july.isShowing())
+        {
+            String query = "INSERT INTO `1_july_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_July(query, "Added"); 
+        } else if (jTable_august.isShowing())
+        {
+            String query = "INSERT INTO `1_august_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_August(query, "Added"); 
+        } else if (jTable_september.isShowing())
+        {
+            String query = "INSERT INTO `1_september_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_September(query, "Added"); 
+        } else if (jTable_october.isShowing())
+        {
+            String query = "INSERT INTO `1_october_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_October(query, "Added"); 
+        } else if (jTable_november.isShowing())
+        {
+            String query = "INSERT INTO `1_november_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_November(query, "Added");  
+        } else if (jTable_december.isShowing())
+        {
+            String query = "INSERT INTO `1_december_2018`(`date`, `eating`, `mobile`, `flat`, `fuel`, `tickets`, `payment`, `other`) VALUES ('"+jTextField_Date.getText()+"',"+jTextField_Eating.getText()+","+jTextField_Mobile.getText()+","+jTextField_Flat.getText()+","+jTextField_Fuel.getText()+","+jTextField_Tickets.getText()+","+jTextField_Payment.getText()+","+jTextField_Other.getText()+")";
+            executeSQlQuery_December(query, "Added"); 
+        }             
     }//GEN-LAST:event_jLabel_AddMouseClicked
 
     private void jTextField_IncomingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IncomingsActionPerformed
@@ -1242,52 +1833,208 @@ public class AppForm extends javax.swing.JFrame
     }//GEN-LAST:event_jTextField_IncomingsActionPerformed
 
     private void jTable_februaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_februaryMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_february.getSelectedRow();
+        TableModel model = jTable_february.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_februaryMouseClicked
 
     private void jTable_marchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_marchMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_march.getSelectedRow();
+        TableModel model = jTable_march.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_marchMouseClicked
 
     private void jTable_aprilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_aprilMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_april.getSelectedRow();
+        TableModel model = jTable_april.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_aprilMouseClicked
 
     private void jTable_mayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_mayMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_may.getSelectedRow();
+        TableModel model = jTable_may.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_mayMouseClicked
 
-    private void jTable_JuneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_JuneMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable_JuneMouseClicked
+    private void jTable_juneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_juneMouseClicked
+        // Show Expendings in TextFields
+        int i = jTable_june.getSelectedRow();
+        TableModel model = jTable_june.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
+    }//GEN-LAST:event_jTable_juneMouseClicked
 
     private void jTable_julyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_julyMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_july.getSelectedRow();
+        TableModel model = jTable_july.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_julyMouseClicked
 
     private void jTable_augustMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_augustMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_august.getSelectedRow();
+        TableModel model = jTable_august.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_augustMouseClicked
 
     private void jTable_septemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_septemberMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_september.getSelectedRow();
+        TableModel model = jTable_september.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_septemberMouseClicked
 
     private void jTable_octoberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_octoberMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_october.getSelectedRow();
+        TableModel model = jTable_october.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_octoberMouseClicked
 
     private void jTable_novemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_novemberMouseClicked
-        // TODO add your handling code here:
+            // Show Expendings in TextFields
+        int i = jTable_november.getSelectedRow();
+        TableModel model = jTable_november.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_novemberMouseClicked
 
     private void jTable_decemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_decemberMouseClicked
-        // TODO add your handling code here:
+        // Show Expendings in TextFields
+        int i = jTable_december.getSelectedRow();
+        TableModel model = jTable_december.getModel();
+        jTextField_ID.setText(model.getValueAt(i, 0).toString());
+        jTextField_Date.setText(model.getValueAt(i, 1).toString());
+        jTextField_Eating.setText(model.getValueAt(i, 2).toString());
+        jTextField_Mobile.setText(model.getValueAt(i, 3).toString());
+        jTextField_Flat.setText(model.getValueAt(i, 4).toString());
+        jTextField_Fuel.setText(model.getValueAt(i, 5).toString());
+        jTextField_Tickets.setText(model.getValueAt(i, 6).toString());
+        jTextField_Payment.setText(model.getValueAt(i, 7).toString());
+        jTextField_Other.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_jTable_decemberMouseClicked
 
     private void jLabel_refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_refreshMouseClicked
-        String query = "UPDATE `dane` SET `january_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
-        executeSQlQuery(query, "Refreshed");
+        if(jTable_january.isShowing()){
+            String query = "UPDATE `dane` SET `january_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_January(query, "Refreshed");            
+        } else if(jTable_february.isShowing()){
+            String query = "UPDATE `dane` SET `february_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_January(query, "Refreshed");             
+        } else if(jTable_march.isShowing()){
+            String query = "UPDATE `dane` SET `march_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_March(query, "Refreshed");            
+        } else if(jTable_april.isShowing()){
+            String query = "UPDATE `dane` SET `april_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_April(query, "Refreshed"); 
+        } else if(jTable_may.isShowing()){
+            String query = "UPDATE `dane` SET `may_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_May(query, "Refreshed"); 
+        } else if(jTable_june.isShowing()){
+            String query = "UPDATE `dane` SET `june_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_June(query, "Refreshed"); 
+        } else if(jTable_july.isShowing()){
+            String query = "UPDATE `dane` SET `july_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_July(query, "Refreshed"); 
+        } else if(jTable_august.isShowing()){
+            String query = "UPDATE `dane` SET `august_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_August(query, "Refreshed"); 
+        } else if(jTable_september.isShowing()){
+            String query = "UPDATE `dane` SET `september_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_September(query, "Refreshed"); 
+        } else if(jTable_october.isShowing()){
+            String query = "UPDATE `dane` SET `october_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_October(query, "Refreshed"); 
+        } else if(jTable_november.isShowing()){
+            String query = "UPDATE `dane` SET `november_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_November(query, "Refreshed"); 
+        } else if(jTable_december.isShowing()){
+            String query = "UPDATE `dane` SET `december_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
+            executeSQlQuery_December(query, "Refreshed"); 
+        }
     }//GEN-LAST:event_jLabel_refreshMouseClicked
 
     private void jLabel_LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LogoutMouseClicked
@@ -1307,12 +2054,12 @@ public class AppForm extends javax.swing.JFrame
         }   
     }
     
-    public ArrayList<Expending> getExpendingsList()
+    public ArrayList<Expending> getExpendingsList(String month)
     {
         ArrayList<Expending> expendingsList = new ArrayList<Expending>();
         Connection connection = getConnection();
         
-        String query = "SELECT * FROM `1_january_2018`"; 
+        String query = "SELECT * FROM `1_"+month+"_2018`"; 
         Statement st;
         ResultSet rs;
         
@@ -1333,10 +2080,10 @@ public class AppForm extends javax.swing.JFrame
             return expendingsList;
     }
     
-    public void ShowUserIncomingsSave()
+    public void ShowUserIncomingsSave(String month)
     {
         Connection con = getConnection();
-        String query = "SELECT `january_salary` FROM `dane` WHERE `username`='"+jLabel_UserName.getText()+"'";
+        String query = "SELECT `"+month+"_salary` FROM `dane` WHERE `username`='"+jLabel_UserName.getText()+"'";
         Statement st;
         ResultSet rs;
         
@@ -1344,7 +2091,7 @@ public class AppForm extends javax.swing.JFrame
             st = con.createStatement();
             rs = st.executeQuery(query);
             rs.next();
-            Double incomings = rs.getDouble("january_salary");
+            Double incomings = rs.getDouble(""+month+"_salary");
             jTextField_Incomings.setText(Double.toString(incomings));
             
             double save = incomings - (Double.parseDouble(jTextField_Outgoings.getText()));
@@ -1362,9 +2109,9 @@ public class AppForm extends javax.swing.JFrame
             }
     }   
     
-    public void ShowExpendingsInJTable()   
+    public void ShowExpendingsInJTable_January() 
     {
-        ArrayList<Expending> list = getExpendingsList();
+        ArrayList<Expending> list = getExpendingsList(january);
         DefaultTableModel model = (DefaultTableModel)jTable_january.getModel();
         Object[] row = new Object[10];
         for(int i = 0; i < list.size(); i++)      
@@ -1384,7 +2131,249 @@ public class AppForm extends javax.swing.JFrame
         }
     }  
     
-    public void executeSQlQuery (String query, String message)
+    public void ShowExpendingsInJTable_February()  
+    {
+        ArrayList<Expending> list = getExpendingsList(february);
+        DefaultTableModel model = (DefaultTableModel)jTable_february.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    } 
+    
+    public void ShowExpendingsInJTable_March()  
+    {
+        ArrayList<Expending> list = getExpendingsList(march);
+        DefaultTableModel model = (DefaultTableModel)jTable_march.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_April()  
+    {
+        ArrayList<Expending> list = getExpendingsList(april);
+        DefaultTableModel model = (DefaultTableModel)jTable_april.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_May()  
+    {
+        ArrayList<Expending> list = getExpendingsList(may);
+        DefaultTableModel model = (DefaultTableModel)jTable_may.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_June()  
+    {
+        ArrayList<Expending> list = getExpendingsList(june);
+        DefaultTableModel model = (DefaultTableModel)jTable_june.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_July()  
+    {
+        ArrayList<Expending> list = getExpendingsList(july);
+        DefaultTableModel model = (DefaultTableModel)jTable_july.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_August()  
+    {
+        ArrayList<Expending> list = getExpendingsList(august);
+        DefaultTableModel model = (DefaultTableModel)jTable_august.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_September()  
+    {
+        ArrayList<Expending> list = getExpendingsList(september);
+        DefaultTableModel model = (DefaultTableModel)jTable_september.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_October()  
+    {
+        ArrayList<Expending> list = getExpendingsList(october);
+        DefaultTableModel model = (DefaultTableModel)jTable_october.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void ShowExpendingsInJTable_November()  
+    {
+        ArrayList<Expending> list = getExpendingsList(november);
+        DefaultTableModel model = (DefaultTableModel)jTable_november.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }  
+    
+    public void ShowExpendingsInJTable_December()  
+    {
+        ArrayList<Expending> list = getExpendingsList(december);
+        DefaultTableModel model = (DefaultTableModel)jTable_december.getModel();
+        Object[] row = new Object[10];
+        for(int i = 0; i < list.size(); i++)      
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getDate();
+            row[2] = list.get(i).getEating();
+            row[3] = list.get(i).getMobile();
+            row[4] = list.get(i).getFlat();
+            row[5] = list.get(i).getFuel();
+            row[6] = list.get(i).getTickets();
+            row[7] = list.get(i).getPayment();
+            row[8] = list.get(i).getOther();
+            row[9] = list.get(i).getTotal();
+            
+            model.addRow(row);
+        }
+    }
+    
+    public void executeSQlQuery_January (String query, String message)
     {
         Connection con = getConnection();
         Statement st;
@@ -1395,9 +2384,284 @@ public class AppForm extends javax.swing.JFrame
                 // Refreshing data in jTable
                 DefaultTableModel model = (DefaultTableModel)jTable_january.getModel();
                 model.setRowCount(0);
-                ShowExpendingsInJTable();
-                ShowTotal();
-                ShowUserIncomingsSave();
+                ShowExpendingsInJTable_January();
+                ShowTotal_January();
+                ShowUserIncomingsSave(january);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_February (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_february.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_February();
+                ShowTotal_February();
+                ShowUserIncomingsSave(february);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }    
+    
+    public void executeSQlQuery_March (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_march.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_March();
+                ShowTotal_March();
+                ShowUserIncomingsSave(march);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_April (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_april.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_April();
+                ShowTotal_April();
+                ShowUserIncomingsSave(april);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_May (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_may.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_May();
+                ShowTotal_May();
+                ShowUserIncomingsSave(may);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_June (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_june.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_June();
+                ShowTotal_June();
+                ShowUserIncomingsSave(june);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_July (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_july.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_July();
+                ShowTotal_July();
+                ShowUserIncomingsSave(july);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_August (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_august.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_August();
+                ShowTotal_August();
+                ShowUserIncomingsSave(august);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_September (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_september.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_September();
+                ShowTotal_September();
+                ShowUserIncomingsSave(september);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_October (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_october.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_October();
+                ShowTotal_October();
+                ShowUserIncomingsSave(october);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void executeSQlQuery_November (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_november.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_November();
+                ShowTotal_November();
+                ShowUserIncomingsSave(november);
+                
+                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+            }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+        public void executeSQlQuery_December (String query, String message)
+    {
+        Connection con = getConnection();
+        Statement st;
+        try {
+            st = con.createStatement();
+            if ((st.executeUpdate(query)) == 1)
+            {
+                // Refreshing data in jTable
+                DefaultTableModel model = (DefaultTableModel)jTable_december.getModel();
+                model.setRowCount(0);
+                ShowExpendingsInJTable_December();
+                ShowTotal_December();
+                ShowUserIncomingsSave(december);
                 
                 JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
             }else{
@@ -1457,7 +2721,6 @@ public class AppForm extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1468,7 +2731,6 @@ public class AppForm extends javax.swing.JFrame
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -1479,14 +2741,15 @@ public class AppForm extends javax.swing.JFrame
     private javax.swing.JLabel jLabel_Add;
     private javax.swing.JLabel jLabel_Eating1;
     private javax.swing.JLabel jLabel_Edit;
+    private javax.swing.JLabel jLabel_Exit;
     private javax.swing.JLabel jLabel_Flat1;
     private javax.swing.JLabel jLabel_Fuel1;
+    private javax.swing.JLabel jLabel_Iconified;
     private javax.swing.JLabel jLabel_Logout;
     private javax.swing.JLabel jLabel_Mobile1;
     private javax.swing.JLabel jLabel_Other1;
     private javax.swing.JLabel jLabel_Payment1;
     private javax.swing.JLabel jLabel_Remove;
-    private javax.swing.JLabel jLabel_TEST;
     private javax.swing.JLabel jLabel_Tickets1;
     private javax.swing.JLabel jLabel_Total1;
     private javax.swing.JLabel jLabel_UserName;
@@ -1509,13 +2772,13 @@ public class AppForm extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable_June;
     private javax.swing.JTable jTable_april;
     private javax.swing.JTable jTable_august;
     private javax.swing.JTable jTable_december;
     private javax.swing.JTable jTable_february;
     private javax.swing.JTable jTable_january;
     private javax.swing.JTable jTable_july;
+    private javax.swing.JTable jTable_june;
     private javax.swing.JTable jTable_march;
     private javax.swing.JTable jTable_may;
     private javax.swing.JTable jTable_november;
