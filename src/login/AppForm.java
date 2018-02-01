@@ -45,68 +45,55 @@ public class AppForm extends javax.swing.JFrame
     {
         initComponents();
         jLabel_UserName.setText(userName);
-        
-//        if(jTable_january.isShowing())
-//        {
-        ShowExpendingsInJTable_January();
-        ShowTotal_January();
-        ShowUserIncomingsSave(january);           
-//        } else if(jTable_february.isShowing())
-//        {
+
         ShowExpendingsInJTable_February();
         ShowTotal_February();
         ShowUserIncomingsSave(february);            
-//        } else if(jTable_march.isShowing())
-//        {
+
         ShowExpendingsInJTable_March();
         ShowTotal_March();
         ShowUserIncomingsSave(march);            
-//        } else if(jTable_april.isShowing())
-//        {
+
         ShowExpendingsInJTable_April();
         ShowTotal_April();
         ShowUserIncomingsSave(april);            
-//        } else if(jTable_may.isShowing())
-//        {
+
         ShowExpendingsInJTable_May();
         ShowTotal_May();
         ShowUserIncomingsSave(may);            
-//        } else if(jTable_june.isShowing())
-//        {
+
         ShowExpendingsInJTable_June();
         ShowTotal_June();
         ShowUserIncomingsSave(june);            
-//        } else if(jTable_july.isShowing())
-//        {
+
         ShowExpendingsInJTable_July();
         ShowTotal_July();
         ShowUserIncomingsSave(july);            
-//        } else if(jTable_august.isShowing())
-//        {
+
         ShowExpendingsInJTable_August();
         ShowTotal_August();
         ShowUserIncomingsSave(august);            
-//        } else if(jTable_september.isShowing())
-//        {
+
         ShowExpendingsInJTable_September();
         ShowTotal_September();
         ShowUserIncomingsSave(september);            
-//        } else if(jTable_october.isShowing())
-//        {
+
         ShowExpendingsInJTable_October();
         ShowTotal_October();
         ShowUserIncomingsSave(october);            
-//        } else if(jTable_november.isShowing())
-//        {
+
         ShowExpendingsInJTable_November();
         ShowTotal_November();
         ShowUserIncomingsSave(november);            
-//        } else if(jTable_december.isShowing())
-//        {
+
         ShowExpendingsInJTable_December();
         ShowTotal_December();
-        ShowUserIncomingsSave(december);            
-//        }  
+        ShowUserIncomingsSave(december);  
+        
+        ShowExpendingsInJTable_January();
+        ShowTotal_January();
+        ShowUserIncomingsSave(january);    
+  
     }
     
     /**
@@ -668,6 +655,7 @@ public class AppForm extends javax.swing.JFrame
         jLabel17.setText("Total Incomings:");
 
         jTextField_Incomings.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jTextField_Incomings.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Incomings.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_Incomings.setToolTipText("Total Incomings");
         jTextField_Incomings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -701,6 +689,7 @@ public class AppForm extends javax.swing.JFrame
 
         jLabel_refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/refresh.png"))); // NOI18N
         jLabel_refresh.setText("jLabel4");
+        jLabel_refresh.setToolTipText("Refresh incomings");
         jLabel_refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_refresh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -709,6 +698,7 @@ public class AppForm extends javax.swing.JFrame
         });
 
         jLabel_Logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jLabel_Logout.setToolTipText("Logout");
         jLabel_Logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -786,6 +776,7 @@ public class AppForm extends javax.swing.JFrame
         jLabel_Exit.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Exit.setText("X");
+        jLabel_Exit.setToolTipText("Exit");
         jLabel_Exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -815,6 +806,7 @@ public class AppForm extends javax.swing.JFrame
         jLabel_Iconified.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_Iconified.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Iconified.setText("-");
+        jLabel_Iconified.setToolTipText("Minimize");
         jLabel_Iconified.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Iconified.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -832,7 +824,7 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Date.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Date.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Date.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Date.setToolTipText("Type your last name");
+        jTextField_Date.setToolTipText("");
         jTextField_Date.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel8.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
@@ -843,7 +835,7 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Eating.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Eating.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Eating.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Eating.setToolTipText("Type your last name");
+        jTextField_Eating.setToolTipText("");
         jTextField_Eating.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
@@ -854,13 +846,13 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Mobile.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Mobile.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Mobile.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Mobile.setToolTipText("Type your last name");
+        jTextField_Mobile.setToolTipText("");
         jTextField_Mobile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jTextField_Flat.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Flat.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Flat.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Flat.setToolTipText("Type your last name");
+        jTextField_Flat.setToolTipText("");
         jTextField_Flat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
@@ -876,7 +868,7 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Fuel.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Fuel.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Fuel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Fuel.setToolTipText("Type your last name");
+        jTextField_Fuel.setToolTipText("");
         jTextField_Fuel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel12.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
@@ -887,13 +879,13 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Tickets.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Tickets.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Tickets.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Tickets.setToolTipText("Type your last name");
+        jTextField_Tickets.setToolTipText("");
         jTextField_Tickets.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jTextField_Payment.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Payment.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Payment.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Payment.setToolTipText("Type your last name");
+        jTextField_Payment.setToolTipText("");
         jTextField_Payment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel13.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
@@ -909,7 +901,7 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Other.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_Other.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_Other.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_Other.setToolTipText("Type your last name");
+        jTextField_Other.setToolTipText("");
         jTextField_Other.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -952,7 +944,7 @@ public class AppForm extends javax.swing.JFrame
         jTextField_ID.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextField_ID.setForeground(new java.awt.Color(51, 51, 51));
         jTextField_ID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_ID.setToolTipText("Type your last name");
+        jTextField_ID.setToolTipText("");
         jTextField_ID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1072,6 +1064,11 @@ public class AppForm extends javax.swing.JFrame
         jLabel15.setBounds(200, 0, 580, 50);
 
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jTable_january.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTable_january.setModel(new javax.swing.table.DefaultTableModel(
@@ -1083,7 +1080,7 @@ public class AppForm extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                true, true, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2000,46 +1997,133 @@ public class AppForm extends javax.swing.JFrame
     private void jLabel_refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_refreshMouseClicked
         if(jTable_january.isShowing()){
             String query = "UPDATE `dane` SET `january_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
-            executeSQlQuery_January(query, "Refreshed");            
+            executeSQlQuery_January(query, "Refreshed");  
+            ShowTotal_January();
+            ShowUserIncomingsSave(january);
+            
         } else if(jTable_february.isShowing()){
             String query = "UPDATE `dane` SET `february_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
-            executeSQlQuery_January(query, "Refreshed");             
+            executeSQlQuery_January(query, "Refreshed");   
+            ShowTotal_February();
+            ShowUserIncomingsSave(february);
+            
         } else if(jTable_march.isShowing()){
             String query = "UPDATE `dane` SET `march_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
-            executeSQlQuery_March(query, "Refreshed");            
+            executeSQlQuery_March(query, "Refreshed"); 
+            ShowTotal_March();
+            ShowUserIncomingsSave(march);
+            
         } else if(jTable_april.isShowing()){
             String query = "UPDATE `dane` SET `april_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_April(query, "Refreshed"); 
+            ShowTotal_April();
+            ShowUserIncomingsSave(april);
+            
         } else if(jTable_may.isShowing()){
             String query = "UPDATE `dane` SET `may_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_May(query, "Refreshed"); 
+            ShowTotal_May();
+            ShowUserIncomingsSave(may);
+            
         } else if(jTable_june.isShowing()){
             String query = "UPDATE `dane` SET `june_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_June(query, "Refreshed"); 
+            ShowTotal_June();
+            ShowUserIncomingsSave(june);
+            
         } else if(jTable_july.isShowing()){
             String query = "UPDATE `dane` SET `july_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_July(query, "Refreshed"); 
+            ShowTotal_July();
+            ShowUserIncomingsSave(july);
+            
         } else if(jTable_august.isShowing()){
             String query = "UPDATE `dane` SET `august_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_August(query, "Refreshed"); 
+            ShowTotal_August();
+            ShowUserIncomingsSave(august);
+            
         } else if(jTable_september.isShowing()){
             String query = "UPDATE `dane` SET `september_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_September(query, "Refreshed"); 
+            ShowTotal_September();
+            ShowUserIncomingsSave(september);
+            
         } else if(jTable_october.isShowing()){
             String query = "UPDATE `dane` SET `october_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_October(query, "Refreshed"); 
+            ShowTotal_October();
+            ShowUserIncomingsSave(october);
+            
         } else if(jTable_november.isShowing()){
             String query = "UPDATE `dane` SET `november_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_November(query, "Refreshed"); 
+            ShowTotal_November();
+            ShowUserIncomingsSave(november);
+            
         } else if(jTable_december.isShowing()){
             String query = "UPDATE `dane` SET `december_salary`='"+jTextField_Incomings.getText()+"' WHERE `username`='"+jLabel_UserName.getText()+"'";
             executeSQlQuery_December(query, "Refreshed"); 
+            ShowTotal_December();
+            ShowUserIncomingsSave(december);
         }
     }//GEN-LAST:event_jLabel_refreshMouseClicked
 
     private void jLabel_LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LogoutMouseClicked
         showLoginForm();
     }//GEN-LAST:event_jLabel_LogoutMouseClicked
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        if(jTable_january.isShowing())
+        {
+        ShowTotal_January();
+        ShowUserIncomingsSave(january);           
+        } else if(jTable_february.isShowing())
+        {
+        ShowTotal_February();
+        ShowUserIncomingsSave(february);            
+        } else if(jTable_march.isShowing())
+        {
+        ShowTotal_March();
+        ShowUserIncomingsSave(march);            
+        } else if(jTable_april.isShowing())
+        {
+        ShowTotal_April();
+        ShowUserIncomingsSave(april);            
+        } else if(jTable_may.isShowing())
+        {
+        ShowTotal_May();
+        ShowUserIncomingsSave(may);            
+        } else if(jTable_june.isShowing())
+        {
+        ShowTotal_June();
+        ShowUserIncomingsSave(june);            
+        } else if(jTable_july.isShowing())
+        {
+        ShowTotal_July();
+        ShowUserIncomingsSave(july);            
+        } else if(jTable_august.isShowing())
+        {
+        ShowTotal_August();
+        ShowUserIncomingsSave(august);            
+        } else if(jTable_september.isShowing())
+        {
+        ShowTotal_September();
+        ShowUserIncomingsSave(september);            
+        } else if(jTable_october.isShowing())
+        {
+        ShowTotal_October();
+        ShowUserIncomingsSave(october);            
+        } else if(jTable_november.isShowing())
+        {
+        ShowTotal_November();
+        ShowUserIncomingsSave(november);            
+        } else if(jTable_december.isShowing())
+        {
+        ShowTotal_December();
+        ShowUserIncomingsSave(december);            
+        }  
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     public Connection getConnection()
     {
