@@ -20,6 +20,9 @@ import javax.swing.JOptionPane;
 public class LoginForm extends javax.swing.JFrame {
     
     
+    int xx;
+    int yy;
+    
     /**
      * Creates new form LoginForm
      */
@@ -52,6 +55,7 @@ public class LoginForm extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel_dragedd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign up");
@@ -222,6 +226,20 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(290, 180, 60, 16);
 
+        jLabel_dragedd.setText("jLabel9");
+        jLabel_dragedd.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel_drageddMouseDragged(evt);
+            }
+        });
+        jLabel_dragedd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel_drageddMousePressed(evt);
+            }
+        });
+        jPanel1.add(jLabel_dragedd);
+        jLabel_dragedd.setBounds(0, 0, 520, 50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -302,6 +320,19 @@ public class LoginForm extends javax.swing.JFrame {
         this.dispose();  // exit LoginForm
     }//GEN-LAST:event_jLabel_RegisterMouseClicked
 
+    private void jLabel_drageddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_drageddMousePressed
+        // reading coordination of pressed poin
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_jLabel_drageddMousePressed
+
+    private void jLabel_drageddMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_drageddMouseDragged
+        // moving form 
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_jLabel_drageddMouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +380,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_Register;
+    private javax.swing.JLabel jLabel_dragedd;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

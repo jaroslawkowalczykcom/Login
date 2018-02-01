@@ -36,6 +36,9 @@ public class AppForm extends javax.swing.JFrame
     private final String november = "november";
     private final String december = "december";
     
+    int xx;
+    int yy;
+    
     public AppForm() 
     {
         initComponents();
@@ -621,6 +624,11 @@ public class AppForm extends javax.swing.JFrame
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -1060,8 +1068,18 @@ public class AppForm extends javax.swing.JFrame
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Expenditure Management System");
+        jLabel15.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel15MouseDragged(evt);
+            }
+        });
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel15MousePressed(evt);
+            }
+        });
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(200, 0, 580, 50);
+        jLabel15.setBounds(0, 0, 850, 50);
 
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -2124,6 +2142,23 @@ public class AppForm extends javax.swing.JFrame
         ShowUserIncomingsSave(december);            
         }  
     }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void jLabel15MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseDragged
+        // moving form 
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_jLabel15MouseDragged
+
+    private void jLabel15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MousePressed
+        // reading coordination of pressed poin
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_jLabel15MousePressed
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel2MouseClicked
 
     public Connection getConnection()
     {

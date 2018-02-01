@@ -16,7 +16,10 @@ import javax.swing.JOptionPane;
  * @author Jarek
  */
 public class RegisterForm extends javax.swing.JFrame {
-
+    
+    int xx;
+    int yy;
+    
     /**
      * Creates new form RegisterForm
      */
@@ -57,6 +60,7 @@ public class RegisterForm extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField_age = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jLabel_dragged = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Register form");
@@ -285,6 +289,19 @@ public class RegisterForm extends javax.swing.JFrame {
         jPanel1.add(jLabel12);
         jLabel12.setBounds(290, 410, 100, 16);
 
+        jLabel_dragged.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel_draggedMouseDragged(evt);
+            }
+        });
+        jLabel_dragged.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel_draggedMousePressed(evt);
+            }
+        });
+        jPanel1.add(jLabel_dragged);
+        jLabel_dragged.setBounds(0, 4, 520, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,6 +363,19 @@ public class RegisterForm extends javax.swing.JFrame {
             jPasswordField_Repass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox_ShowPassActionPerformed
+
+    private void jLabel_draggedMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_draggedMousePressed
+        // reading coordination of pressed poin
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_jLabel_draggedMousePressed
+
+    private void jLabel_draggedMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_draggedMouseDragged
+        // moving form 
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_jLabel_draggedMouseDragged
 
     public void zapytanieSql(String query)
     {
@@ -421,6 +451,7 @@ public class RegisterForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Login;
+    private javax.swing.JLabel jLabel_dragged;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
