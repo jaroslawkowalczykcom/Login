@@ -319,7 +319,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // Zamknięcie okna
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -342,7 +342,7 @@ public class RegisterForm extends javax.swing.JFrame {
         {
         // Wpisanie nowego użytkownika do bazy
             try {
-                zapytanieSql("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('"+jTextField_uname.getText()+"','"+jPasswordField_Pass.getText()+"','"+jTextField_fname.getText()+"','"+jTextField_lname.getText()+"','"+jTextField_email.getText()+"',"+jTextField_age.getText()+")");
+                getConnection("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('"+jTextField_uname.getText()+"','"+jPasswordField_Pass.getText()+"','"+jTextField_fname.getText()+"','"+jTextField_lname.getText()+"','"+jTextField_email.getText()+"',"+jTextField_age.getText()+")");
                 JOptionPane.showMessageDialog(null, "New user added successfully");
                 showLoginForm();
                 
@@ -377,7 +377,7 @@ public class RegisterForm extends javax.swing.JFrame {
         this.setLocation(x - xx, y - yy);
     }//GEN-LAST:event_jLabel_draggedMouseDragged
 
-    public void zapytanieSql(String query)
+    public void getConnection(String query)
     {
         Connection con;
         Statement st;
