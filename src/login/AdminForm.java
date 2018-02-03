@@ -1,21 +1,37 @@
 package login;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.io.*;
+import java.text.MessageFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 
 public class AdminForm extends javax.swing.JFrame {
 
     int xx;
     int yy;
+    
+    
     
     public AdminForm() {
         initComponents();
@@ -45,6 +61,14 @@ public class AdminForm extends javax.swing.JFrame {
         jLabel_Close = new javax.swing.JLabel();
         jPanel_Login = new javax.swing.JPanel();
         jLabel_Login = new javax.swing.JLabel();
+        jPanel_Txt = new javax.swing.JPanel();
+        jLabel_Txt = new javax.swing.JLabel();
+        jPanel_Xls = new javax.swing.JPanel();
+        jLabel_Xls = new javax.swing.JLabel();
+        jPanel_Print = new javax.swing.JPanel();
+        jLabel_Print = new javax.swing.JLabel();
+        jPanel_PDF = new javax.swing.JPanel();
+        jLabel_PDF = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel_Edit = new javax.swing.JLabel();
         jLabel_Remove = new javax.swing.JLabel();
@@ -242,6 +266,110 @@ public class AdminForm extends javax.swing.JFrame {
             .addComponent(jLabel_Login, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
+        jPanel_Txt.setBackground(new java.awt.Color(31, 174, 174));
+
+        jLabel_Txt.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel_Txt.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Txt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/txt.png"))); // NOI18N
+        jLabel_Txt.setText("  Export data to TXT File");
+        jLabel_Txt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Txt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_TxtMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_TxtLayout = new javax.swing.GroupLayout(jPanel_Txt);
+        jPanel_Txt.setLayout(jPanel_TxtLayout);
+        jPanel_TxtLayout.setHorizontalGroup(
+            jPanel_TxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_TxtLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_Txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_TxtLayout.setVerticalGroup(
+            jPanel_TxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel_Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel_Xls.setBackground(new java.awt.Color(31, 174, 174));
+
+        jLabel_Xls.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel_Xls.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Xls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/excel.png"))); // NOI18N
+        jLabel_Xls.setText("  Export data to XLS File");
+        jLabel_Xls.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Xls.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_XlsMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_XlsLayout = new javax.swing.GroupLayout(jPanel_Xls);
+        jPanel_Xls.setLayout(jPanel_XlsLayout);
+        jPanel_XlsLayout.setHorizontalGroup(
+            jPanel_XlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_XlsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_Xls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_XlsLayout.setVerticalGroup(
+            jPanel_XlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel_Xls, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel_Print.setBackground(new java.awt.Color(31, 174, 174));
+
+        jLabel_Print.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel_Print.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/print.png"))); // NOI18N
+        jLabel_Print.setText("  Print data");
+        jLabel_Print.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Print.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_PrintMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_PrintLayout = new javax.swing.GroupLayout(jPanel_Print);
+        jPanel_Print.setLayout(jPanel_PrintLayout);
+        jPanel_PrintLayout.setHorizontalGroup(
+            jPanel_PrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PrintLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_Print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_PrintLayout.setVerticalGroup(
+            jPanel_PrintLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel_Print, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jPanel_PDF.setBackground(new java.awt.Color(31, 174, 174));
+
+        jLabel_PDF.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel_PDF.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_PDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf.png"))); // NOI18N
+        jLabel_PDF.setText("  Export data to PDF File");
+        jLabel_PDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_PDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_PDFMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_PDFLayout = new javax.swing.GroupLayout(jPanel_PDF);
+        jPanel_PDF.setLayout(jPanel_PDFLayout);
+        jPanel_PDFLayout.setHorizontalGroup(
+            jPanel_PDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_PDFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_PDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_PDFLayout.setVerticalGroup(
+            jPanel_PDFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel_PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -249,6 +377,10 @@ public class AdminForm extends javax.swing.JFrame {
             .addComponent(jPanel_Manage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel_Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel_Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_Txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_Xls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_Print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_PDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,10 +388,18 @@ public class AdminForm extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jPanel_Manage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Xls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_PDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Print, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addComponent(jPanel_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel2);
@@ -923,9 +1063,6 @@ public Connection getConnection()
     }//GEN-LAST:event_jTable_UsersMousePressed
 
     private void jLabel_CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CloseMouseClicked
-        setColor(jPanel_Exit);
-        resetColor(jPanel_Manage);
-        resetColor(jPanel_Login);
         this.dispose();
     }//GEN-LAST:event_jLabel_CloseMouseClicked
 
@@ -933,22 +1070,154 @@ public Connection getConnection()
         resetColor(jPanel_Exit);
         setColor(jPanel_Manage);
         resetColor(jPanel_Login);
+        resetColor(jPanel_Txt);
+        resetColor(jPanel_Xls);
+        resetColor(jPanel_Print);
+        resetColor(jPanel_PDF);
     }//GEN-LAST:event_jLabel_ManageMouseClicked
 
     private void jLabel_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LoginMouseClicked
         resetColor(jPanel_Exit);
         resetColor(jPanel_Manage);
         setColor(jPanel_Login);
-        
-//        If you want to disable view of some componaments        
-//        jPanel4.setVisible(false);
-//        jScrollPane1.setVisible(false);
+        resetColor(jPanel_Txt);
+        resetColor(jPanel_Xls);
+        resetColor(jPanel_Print);
+        resetColor(jPanel_PDF);
         
         LoginForm lgf = new LoginForm();
         lgf.setVisible(true);
         lgf.setLocationRelativeTo(null);
     }//GEN-LAST:event_jLabel_LoginMouseClicked
 
+    private void jLabel_TxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TxtMouseClicked
+        setColor(jPanel_Txt);
+        resetColor(jPanel_Exit);
+        resetColor(jPanel_Manage);
+        resetColor(jPanel_Login); 
+        resetColor(jPanel_Xls);
+        resetColor(jPanel_Print);
+        resetColor(jPanel_PDF);
+        
+        // Save raport as .txt file
+        JFileChooser fs = new JFileChooser(new File("C:\\"));
+        fs.setDialogTitle("Save a File");
+        fs.setFileFilter(new FileTypeFilter(".txt", "Text File"));
+        int result = fs.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {           
+            File fi = fs.getSelectedFile();
+            try {
+                FileWriter fw = new FileWriter(fi.getPath());
+                BufferedWriter bw = new BufferedWriter(fw);
+                
+                for (int i = 0; i < jTable_Users.getRowCount(); i++) {
+                    for (int j = 0; j < jTable_Users.getColumnCount(); j++) {
+                        bw.write(jTable_Users.getModel().getValueAt(i, j)+" | ");
+                    }
+                    bw.newLine();
+                    bw.write("\n_________________________________________________________________________________________________________________________________________________________________\n");
+                    bw.newLine();
+                    
+                }
+                bw.close();
+                fw.close();
+                JOptionPane.showMessageDialog(null, "Data exported to TXT successfully");
+                
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+        
+        
+    }//GEN-LAST:event_jLabel_TxtMouseClicked
+
+    private void jLabel_XlsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_XlsMouseClicked
+        resetColor(jPanel_Txt);
+        resetColor(jPanel_Exit);
+        resetColor(jPanel_Manage);
+        resetColor(jPanel_Login);
+        setColor(jPanel_Xls);
+        resetColor(jPanel_Print);
+        resetColor(jPanel_PDF);
+        
+        
+//        // Save raport as .xls file
+//        JFileChooser fs = new JFileChooser(new File("C:\\"));
+//        fs.setDialogTitle("Save a File");
+//        fs.setFileFilter(new FileTypeFilter(".xlsx", "Excel File"));
+//        int result = fs.showSaveDialog(null);
+//        if (result == JFileChooser.APPROVE_OPTION) {
+//            // TRY CATCH - SAVING TO XLS CODE
+//            // HERE!!
+//        }   
+
+    }//GEN-LAST:event_jLabel_XlsMouseClicked
+
+    private void jLabel_PrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PrintMouseClicked
+        resetColor(jPanel_Txt);
+        resetColor(jPanel_Exit);
+        resetColor(jPanel_Manage);
+        resetColor(jPanel_Login);
+        resetColor(jPanel_Xls);
+        setColor(jPanel_Print);
+        resetColor(jPanel_PDF);
+        
+        MessageFormat header = new MessageFormat("Report print - Users list");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try {
+            jTable_Users.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Cannot print %s%n", e.getMessage());
+        }
+    }//GEN-LAST:event_jLabel_PrintMouseClicked
+
+    private void jLabel_PDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PDFMouseClicked
+        resetColor(jPanel_Txt);
+        resetColor(jPanel_Exit);
+        resetColor(jPanel_Manage);
+        resetColor(jPanel_Login);
+        resetColor(jPanel_Xls);
+        resetColor(jPanel_Print);
+        setColor(jPanel_PDF);
+        
+        JFileChooser fs = new JFileChooser(new File("C:\\"));
+        fs.setDialogTitle("Save a File");
+        fs.setFileFilter(new FileTypeFilter(".pdf", "PDF File"));
+        int result = fs.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {           
+            File fi = fs.getSelectedFile();
+
+            try {
+                Document doc = new Document(PageSize.A4.rotate(), 20, 20, 20, 20);
+                PdfWriter.getInstance(doc, new FileOutputStream(fi.getPath())); 
+                doc.open();
+                doc.add(new Paragraph(new Date().toString()));
+                doc.add(new Paragraph("."));
+                PdfPTable table = new PdfPTable(jTable_Users.getColumnCount());
+                table.setWidthPercentage(100);
+                System.out.println(jTable_Users.getColumnCount());
+                
+                //  Table headers
+                for(int k = 0; k < jTable_Users.getColumnCount(); k++){
+                    table.addCell(jTable_Users.getColumnName(k).toString());
+                }
+                
+                //  Data from table 
+                for (int i = 0; i < jTable_Users.getRowCount(); i++) {
+                    for (int j = 0; j < jTable_Users.getColumnCount(); j++) {
+                        table.addCell(jTable_Users.getModel().getValueAt(i, j).toString());
+                    }
+                }  
+                doc.add(table);
+                doc.close();
+                JOptionPane.showMessageDialog(null, "Data exported to PDF successfully");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }//GEN-LAST:event_jLabel_PDFMouseClicked
+    
     void setColor(JPanel panel){
         panel.setBackground(new Color(12,115,115));
     }
@@ -1021,7 +1290,12 @@ public Connection getConnection()
     private javax.swing.JLabel jLabel_Iconified;
     private javax.swing.JLabel jLabel_Login;
     private javax.swing.JLabel jLabel_Manage;
+    private javax.swing.JLabel jLabel_PDF;
+    private javax.swing.JLabel jLabel_Print;
+    private javax.swing.JLabel jLabel_Print1;
     private javax.swing.JLabel jLabel_Remove;
+    private javax.swing.JLabel jLabel_Txt;
+    private javax.swing.JLabel jLabel_Xls;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1029,6 +1303,11 @@ public Connection getConnection()
     private javax.swing.JPanel jPanel_Exit;
     private javax.swing.JPanel jPanel_Login;
     private javax.swing.JPanel jPanel_Manage;
+    private javax.swing.JPanel jPanel_PDF;
+    private javax.swing.JPanel jPanel_Print;
+    private javax.swing.JPanel jPanel_Print1;
+    private javax.swing.JPanel jPanel_Txt;
+    private javax.swing.JPanel jPanel_Xls;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Users;
     private javax.swing.JTextField jTextField_Age;

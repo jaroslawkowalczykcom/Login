@@ -774,7 +774,7 @@ public class AppForm extends javax.swing.JFrame
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 200, 500);
+        jPanel2.setBounds(0, 0, 192, 501);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
