@@ -5,6 +5,7 @@
  */
 package login;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -60,11 +61,13 @@ public class LoginForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign up");
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(525, 384));
         setResizable(false);
+        setSize(new java.awt.Dimension(525, 384));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.setMinimumSize(new java.awt.Dimension(525, 384));
+        jPanel1.setName(""); // NOI18N
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
@@ -79,7 +82,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(0, 51, 51));
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(147, 202, 196));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Copyright  c  2018  by  Jaroslaw  Kowalczyk");
 
@@ -178,6 +181,11 @@ public class LoginForm extends javax.swing.JFrame {
         jPasswordField_Pass.setForeground(new java.awt.Color(51, 51, 51));
         jPasswordField_Pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPasswordField_Pass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        jPasswordField_Pass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField_PassKeyPressed(evt);
+            }
+        });
         jPanel1.add(jPasswordField_Pass);
         jPasswordField_Pass.setBounds(290, 200, 190, 30);
 
@@ -272,12 +280,26 @@ public class LoginForm extends javax.swing.JFrame {
             {
                 String userName = jTextField_Login.getText();
                 
+                //  Checking if login is NOT admin - showing AppForm
+                if(!jTextField_Login.getText().equals("admin")){
                 AppForm afm = new AppForm(userName); 
                 afm.setVisible(true);
                 afm.pack();
                 afm.setLocationRelativeTo(null);
                 afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.dispose();
+                }
+                
+                // Checking if admin is admin - showing admiaAdminForm
+                if(jTextField_Login.getText().equals("admin"))
+                { 
+                    AdminForm admFm = new AdminForm();
+                    admFm.setVisible(true);
+                    admFm.pack();
+                    admFm.setLocationRelativeTo(null);
+                    admFm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
+                } 
             } 
             else
             {
@@ -287,6 +309,7 @@ public class LoginForm extends javax.swing.JFrame {
             System.out.println((ex.getStackTrace()));
             JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database"+ex);
         }
+        
     }//GEN-LAST:event_jButton_LoginActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -302,7 +325,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // Exit window
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -332,6 +355,56 @@ public class LoginForm extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xx, y - yy);
     }//GEN-LAST:event_jLabel_drageddMouseDragged
+
+    private void jPasswordField_PassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField_PassKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            Connection connection;
+            PreparedStatement ps;
+            
+            try {
+                // MySQL DB Connection
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+                ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
+                ps.setString(1, jTextField_Login.getText());
+                ps.setString(2, String.valueOf(jPasswordField_Pass.getPassword()));
+                ResultSet result = ps.executeQuery();
+
+                if(result.next())
+                {
+                    String userName = jTextField_Login.getText();
+
+                    //  Checking if login is NOT admin - showing AppForm
+                    if(!jTextField_Login.getText().equals("admin")){
+                    AppForm afm = new AppForm(userName); 
+                    afm.setVisible(true);
+                    afm.pack();
+                    afm.setLocationRelativeTo(null);
+                    afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
+                    }
+
+                    // Checking if admin is admin - showing admiaAdminForm
+                    if(jTextField_Login.getText().equals("admin"))
+                    { 
+                        AdminForm admFm = new AdminForm();
+                        admFm.setVisible(true);
+                        admFm.pack();
+                        admFm.setLocationRelativeTo(null);
+                        admFm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                    } 
+                } 
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Login Error, incorrect username or password");
+                }
+            } catch (SQLException ex) {
+                System.out.println((ex.getStackTrace()));
+                JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database"+ex);
+            }
+        }
+    }//GEN-LAST:event_jPasswordField_PassKeyPressed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,7 @@ public class User
 {
     private final int id;
     private final String userName;
+    private final String password;
     private final String firstName;
     private final String lastName;
     private final String email;
@@ -42,10 +43,11 @@ public class User
      * @param novemberSalary
      * @param decemberSalary
      */
-    public User(int id, String userName, String firstName, String lastName, String email, int age, String januarySalary, String februarySalary, String marchSalary, String aprilSalary, String maySalary, String juneSalary, String julySalary, String augustSalary, String septemberSalary, String octoberSalary, String novemberSalary, String decemberSalary)
+    public User(int id, String userName,String password, String firstName, String lastName, String email, int age, String januarySalary, String februarySalary, String marchSalary, String aprilSalary, String maySalary, String juneSalary, String julySalary, String augustSalary, String septemberSalary, String octoberSalary, String novemberSalary, String decemberSalary)
     {
         this.id = id;
         this.userName = userName;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -72,6 +74,11 @@ public class User
     public String getUserName()
     {
         return this.userName;
+    }
+    
+    public String getPassword()
+    {
+        return this.password;
     }
     
     public String getFirstName()

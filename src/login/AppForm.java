@@ -96,7 +96,6 @@ public class AppForm extends javax.swing.JFrame
         ShowExpendingsInJTable_January();
         ShowTotal_January();
         ShowUserIncomingsSave(january);    
-  
     }
     
     /**
@@ -641,7 +640,6 @@ public class AppForm extends javax.swing.JFrame
         jLabel_UserName.setText("UserName");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(0, 2));
@@ -776,7 +774,7 @@ public class AppForm extends javax.swing.JFrame
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 200, 500);
+        jPanel2.setBounds(0, 0, 192, 501);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -1098,7 +1096,7 @@ public class AppForm extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1663,7 +1661,7 @@ public class AppForm extends javax.swing.JFrame
 
     private void jLabel_ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ExitMouseClicked
         // Exit window
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jLabel_ExitMouseClicked
 
     private void jLabel_IconifiedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_IconifiedMouseClicked
