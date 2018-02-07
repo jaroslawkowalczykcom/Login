@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -49,6 +52,8 @@ public class AppForm extends javax.swing.JFrame
     int xx;
     int yy;
     
+    private Date date;
+    
     public AppForm() 
     {
         initComponents();
@@ -58,54 +63,78 @@ public class AppForm extends javax.swing.JFrame
     {
         initComponents();
         jLabel_UserName.setText(userName);
-
-        ShowExpendingsInJTable_February();
-        ShowTotal_February();
-        ShowUserIncomingsSave(february);            
-
-        ShowExpendingsInJTable_March();
-        ShowTotal_March();
-        ShowUserIncomingsSave(march);            
-
-        ShowExpendingsInJTable_April();
-        ShowTotal_April();
-        ShowUserIncomingsSave(april);            
-
-        ShowExpendingsInJTable_May();
-        ShowTotal_May();
-        ShowUserIncomingsSave(may);            
-
-        ShowExpendingsInJTable_June();
-        ShowTotal_June();
-        ShowUserIncomingsSave(june);            
-
-        ShowExpendingsInJTable_July();
-        ShowTotal_July();
-        ShowUserIncomingsSave(july);            
-
-        ShowExpendingsInJTable_August();
-        ShowTotal_August();
-        ShowUserIncomingsSave(august);            
-
-        ShowExpendingsInJTable_September();
-        ShowTotal_September();
-        ShowUserIncomingsSave(september);            
-
-        ShowExpendingsInJTable_October();
-        ShowTotal_October();
-        ShowUserIncomingsSave(october);            
-
-        ShowExpendingsInJTable_November();
-        ShowTotal_November();
-        ShowUserIncomingsSave(november);            
-
-        ShowExpendingsInJTable_December();
-        ShowTotal_December();
-        ShowUserIncomingsSave(december);  
         
         ShowExpendingsInJTable_January();
-        ShowTotal_January();
-        ShowUserIncomingsSave(january);    
+        ShowExpendingsInJTable_February();
+        ShowExpendingsInJTable_March();
+        ShowExpendingsInJTable_April();
+        ShowExpendingsInJTable_May();
+        ShowExpendingsInJTable_June();
+        ShowExpendingsInJTable_July();
+        ShowExpendingsInJTable_August();           
+        ShowExpendingsInJTable_September();
+        ShowExpendingsInJTable_October();
+        ShowExpendingsInJTable_November();
+        ShowExpendingsInJTable_December();
+ 
+        //Showing date
+        this.date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        jLabel_Date.setText("Today is: "+sdf.format(date));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        
+        //Selecting jTabbedPanel depend on actual month
+        if(calendar.get(Calendar.MONTH) == 0){
+            jTabbedPane1.setSelectedIndex(0);
+            ShowTotal_January();
+            ShowUserIncomingsSave(january);
+        } else if(calendar.get(Calendar.MONTH) == 1){
+            jTabbedPane1.setSelectedIndex(1);
+            ShowTotal_February();
+            ShowUserIncomingsSave(february); 
+        } else if(calendar.get(Calendar.MONTH) == 2){
+            jTabbedPane1.setSelectedIndex(2);
+            ShowTotal_March();
+            ShowUserIncomingsSave(march);
+        } else if(calendar.get(Calendar.MONTH) == 3){
+            jTabbedPane1.setSelectedIndex(3);
+            ShowTotal_April();
+            ShowUserIncomingsSave(april);
+        } else if(calendar.get(Calendar.MONTH) == 4){
+            jTabbedPane1.setSelectedIndex(4);
+            ShowTotal_May();
+            ShowUserIncomingsSave(may);
+        } else if(calendar.get(Calendar.MONTH) == 5){
+            jTabbedPane1.setSelectedIndex(5);
+            ShowTotal_June();
+            ShowUserIncomingsSave(june); 
+        } else if(calendar.get(Calendar.MONTH) == 6){
+            jTabbedPane1.setSelectedIndex(6);
+            ShowTotal_July();
+            ShowUserIncomingsSave(july);
+        } else if(calendar.get(Calendar.MONTH) == 7){
+            jTabbedPane1.setSelectedIndex(7);
+            ShowTotal_August();
+            ShowUserIncomingsSave(august);
+        } else if(calendar.get(Calendar.MONTH) == 8){
+            jTabbedPane1.setSelectedIndex(8);
+            ShowTotal_September();
+            ShowUserIncomingsSave(september); 
+        } else if(calendar.get(Calendar.MONTH) == 9){
+            jTabbedPane1.setSelectedIndex(9);
+            ShowTotal_October();
+            ShowUserIncomingsSave(october); 
+        } else if(calendar.get(Calendar.MONTH) == 10){
+            jTabbedPane1.setSelectedIndex(10);
+            ShowTotal_November();
+            ShowUserIncomingsSave(november);
+        } else if(calendar.get(Calendar.MONTH) == 11){
+            jTabbedPane1.setSelectedIndex(11);
+            ShowTotal_December();
+            ShowUserIncomingsSave(december);
+        }
+        
     }
     
     /**
@@ -560,6 +589,7 @@ public class AppForm extends javax.swing.JFrame
         jTextField_Save = new javax.swing.JTextField();
         jLabel_refresh = new javax.swing.JLabel();
         jLabel_Logout = new javax.swing.JLabel();
+        jLabel_Date = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel_Exit = new javax.swing.JLabel();
         jLabel_Iconified = new javax.swing.JLabel();
@@ -724,6 +754,11 @@ public class AppForm extends javax.swing.JFrame
             }
         });
 
+        jLabel_Date.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel_Date.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Date.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Date.setText("Date");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -752,7 +787,8 @@ public class AppForm extends javax.swing.JFrame
                                 .addComponent(jLabel_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField_Save)
-                            .addComponent(jLabel_UserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel_UserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel_Date, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -766,7 +802,9 @@ public class AppForm extends javax.swing.JFrame
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_UserName)
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Date)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -782,7 +820,7 @@ public class AppForm extends javax.swing.JFrame
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
@@ -1095,7 +1133,7 @@ public class AppForm extends javax.swing.JFrame
         jLabel15.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Expenditure Management System");
+        jLabel15.setText("Expends Management System");
         jLabel15.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel15MouseDragged(evt);
@@ -2952,6 +2990,7 @@ public class AppForm extends javax.swing.JFrame
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Add;
+    private javax.swing.JLabel jLabel_Date;
     private javax.swing.JLabel jLabel_Eating1;
     private javax.swing.JLabel jLabel_Edit;
     private javax.swing.JLabel jLabel_Excel;
