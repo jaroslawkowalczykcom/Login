@@ -7,6 +7,7 @@ package login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -342,9 +343,35 @@ public class RegisterForm extends javax.swing.JFrame {
         {
         // Wpisanie nowego użytkownika do bazy
             try {
-                getConnection("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('"+jTextField_uname.getText()+"','"+jPasswordField_Pass.getText()+"','"+jTextField_fname.getText()+"','"+jTextField_lname.getText()+"','"+jTextField_email.getText()+"',"+jTextField_age.getText()+")");
-                JOptionPane.showMessageDialog(null, "New user added successfully");
-                showLoginForm();
+                // Username veryfication
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+                Statement st = con.createStatement();
+                String sqlUsernameCheck =  "SELECT `username` FROM `dane` WHERE `username`='"+jTextField_uname.getText()+"'";
+                ResultSet rs = st.executeQuery(sqlUsernameCheck);
+                
+                int count = 0;
+                
+                while(rs.next())
+                {
+                    count += 1;
+                }
+                
+                if(count == 1)
+                {
+                    JOptionPane.showMessageDialog(this, "This Username exist try with another");
+                } else if(count > 1)
+                {
+                    JOptionPane.showMessageDialog(this, "Dupliccate Username, acces denied.");
+                }
+                else
+                {
+                    getConnection("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('"+jTextField_uname.getText()+"','"+jPasswordField_Pass.getText()+"','"+jTextField_fname.getText()+"','"+jTextField_lname.getText()+"','"+jTextField_email.getText()+"',"+jTextField_age.getText()+")");
+                    JOptionPane.showMessageDialog(null, "New user added successfully");
+                    showLoginForm();
+                }
+                
+       
                 
             } catch (Exception e) {
                 System.out.println("Błąd dodania do bazy"+e);
