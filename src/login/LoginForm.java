@@ -212,7 +212,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jCheckBox1);
-        jCheckBox1.setBounds(290, 240, 110, 24);
+        jCheckBox1.setBounds(290, 240, 130, 24);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
@@ -270,7 +270,7 @@ public class LoginForm extends javax.swing.JFrame {
         
         try {
             // MySQL DB Connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
             ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
             ps.setString(1, jTextField_Login.getText());
             ps.setString(2, String.valueOf(jPasswordField_Pass.getPassword()));
@@ -364,7 +364,7 @@ public class LoginForm extends javax.swing.JFrame {
             
             try {
                 // MySQL DB Connection
-                connection = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+                connection = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
                 ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
                 ps.setString(1, jTextField_Login.getText());
                 ps.setString(2, String.valueOf(jPasswordField_Pass.getPassword()));

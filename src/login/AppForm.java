@@ -2297,7 +2297,7 @@ public class AppForm extends javax.swing.JFrame
         Connection con;
         
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
             return con;
         } catch (Exception e) {
             e.printStackTrace();

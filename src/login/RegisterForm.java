@@ -227,7 +227,7 @@ public class RegisterForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jCheckBox_ShowPass);
-        jCheckBox_ShowPass.setBounds(290, 230, 110, 25);
+        jCheckBox_ShowPass.setBounds(290, 230, 130, 24);
 
         jTextField_fname.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jTextField_fname.setForeground(new java.awt.Color(51, 51, 51));
@@ -345,7 +345,7 @@ public class RegisterForm extends javax.swing.JFrame {
             try {
                 // Username veryfication
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+                Connection con = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
                 Statement st = con.createStatement();
                 String sqlUsernameCheck =  "SELECT `username` FROM `dane` WHERE `username`='"+jTextField_uname.getText()+"'";
                 ResultSet rs = st.executeQuery(sqlUsernameCheck);
