@@ -1,2 +1,2 @@
 # Login
-This repository include MySQL Data Base Expends Management System
+This repository include MySQL Data Base Manager System 

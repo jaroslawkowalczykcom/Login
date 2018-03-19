@@ -1,7 +1,6 @@
 package login;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -15,8 +14,6 @@ import java.util.ArrayList;
 import java.io.*;
 import java.text.MessageFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,20 +21,26 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 
 public class AdminForm extends javax.swing.JFrame {
 
     int xx;
     int yy;
-    
-    
-    
+
+
+
     public AdminForm() {
         initComponents();
         ShowUsersInJTable();
-        
+
         setColor(jPanel_Manage);
+        
     }
 
     /**
@@ -69,6 +72,8 @@ public class AdminForm extends javax.swing.JFrame {
         jLabel_Print = new javax.swing.JLabel();
         jPanel_PDF = new javax.swing.JPanel();
         jLabel_PDF = new javax.swing.JLabel();
+        jPanel_Email = new javax.swing.JPanel();
+        jLabel_Email = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel_Edit = new javax.swing.JLabel();
         jLabel_Remove = new javax.swing.JLabel();
@@ -112,6 +117,9 @@ public class AdminForm extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jTextField_December = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
+        jLabel_Refresh = new javax.swing.JLabel();
+        jLabel_Search = new javax.swing.JLabel();
+        jLabel_Clear = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Users = new javax.swing.JTable();
 
@@ -190,7 +198,7 @@ public class AdminForm extends javax.swing.JFrame {
 
         jPanel_Manage.setBackground(new java.awt.Color(31, 174, 174));
 
-        jLabel_Manage.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel_Manage.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel_Manage.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Manage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
         jLabel_Manage.setText("  Manage Users");
@@ -211,12 +219,14 @@ public class AdminForm extends javax.swing.JFrame {
         );
         jPanel_ManageLayout.setVerticalGroup(
             jPanel_ManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_Manage, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel_Manage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel_Exit.setBackground(new java.awt.Color(31, 174, 174));
 
-        jLabel_Close.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel_Close.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel_Close.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit.png"))); // NOI18N
         jLabel_Close.setText("  Exit");
@@ -233,16 +243,18 @@ public class AdminForm extends javax.swing.JFrame {
             jPanel_ExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ExitLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel_Close, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addComponent(jLabel_Close, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
         );
         jPanel_ExitLayout.setVerticalGroup(
             jPanel_ExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_Close, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ExitLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel_Close, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel_Login.setBackground(new java.awt.Color(31, 174, 174));
 
-        jLabel_Login.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel_Login.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel_Login.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login_adm.png"))); // NOI18N
         jLabel_Login.setText("  Login Form");
@@ -259,11 +271,13 @@ public class AdminForm extends javax.swing.JFrame {
             jPanel_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_LoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel_Login, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addComponent(jLabel_Login, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
         );
         jPanel_LoginLayout.setVerticalGroup(
             jPanel_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel_Login, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_LoginLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel_Txt.setBackground(new java.awt.Color(31, 174, 174));
@@ -370,6 +384,32 @@ public class AdminForm extends javax.swing.JFrame {
             .addComponent(jLabel_PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jPanel_Email.setBackground(new java.awt.Color(31, 174, 174));
+
+        jLabel_Email.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel_Email.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/email.png"))); // NOI18N
+        jLabel_Email.setText("  Send e-mail");
+        jLabel_Email.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Email.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EmailMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_EmailLayout = new javax.swing.GroupLayout(jPanel_Email);
+        jPanel_Email.setLayout(jPanel_EmailLayout);
+        jPanel_EmailLayout.setHorizontalGroup(
+            jPanel_EmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_EmailLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_Email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_EmailLayout.setVerticalGroup(
+            jPanel_EmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -381,11 +421,12 @@ public class AdminForm extends javax.swing.JFrame {
             .addComponent(jPanel_Xls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel_Print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel_PDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_Email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(48, 48, 48)
                 .addComponent(jPanel_Manage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,7 +436,9 @@ public class AdminForm extends javax.swing.JFrame {
                 .addComponent(jPanel_PDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_Print, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(jPanel_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,7 +446,7 @@ public class AdminForm extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(1, 1, 196, 500);
+        jPanel2.setBounds(1, 1, 200, 500);
 
         jPanel4.setFocusTraversalPolicyProvider(true);
 
@@ -648,6 +691,33 @@ public class AdminForm extends javax.swing.JFrame {
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel35.setText("December:");
 
+        jLabel_Refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/refresh.png"))); // NOI18N
+        jLabel_Refresh.setToolTipText("Refresh");
+        jLabel_Refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_RefreshMouseClicked(evt);
+            }
+        });
+
+        jLabel_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        jLabel_Search.setToolTipText("Search");
+        jLabel_Search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_SearchMouseClicked(evt);
+            }
+        });
+
+        jLabel_Clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clear.png"))); // NOI18N
+        jLabel_Clear.setToolTipText("Clear");
+        jLabel_Clear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_ClearMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -656,134 +726,149 @@ public class AdminForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jTextField_January, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jTextField_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel25)
+                            .addComponent(jTextField_February, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel26)
+                            .addComponent(jTextField_March, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jTextField_FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel27)
+                            .addComponent(jTextField_April, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addComponent(jTextField_LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel28)
+                            .addComponent(jTextField_May, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jTextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel29)
+                            .addComponent(jTextField_June, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel30)
+                            .addComponent(jTextField_July, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addComponent(jTextField_August, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32)
+                            .addComponent(jTextField_September, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addComponent(jTextField_October, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34)
+                            .addComponent(jTextField_November, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addComponent(jTextField_December, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jTextField_January, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jTextField_February, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel17)
+                                    .addComponent(jTextField_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26)
-                                    .addComponent(jTextField_March, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel18)
+                                    .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jTextField_April, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel19)
+                                    .addComponent(jTextField_FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jTextField_May, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel20)
+                                    .addComponent(jTextField_LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel29)
-                                    .addComponent(jTextField_June, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel21)
+                                    .addComponent(jTextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel30)
-                                    .addComponent(jTextField_July, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel31)
-                                    .addComponent(jTextField_August, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel32)
-                                    .addComponent(jTextField_September, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel33)
-                                    .addComponent(jTextField_October, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel34)
-                                    .addComponent(jTextField_November, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel35)
-                                    .addComponent(jTextField_December, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel_Remove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel_Edit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel_Add, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel18)
-                            .addGap(1, 1, 1)
-                            .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel17)
-                                .addComponent(jLabel16))
-                            .addGap(1, 1, 1)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel19)
-                            .addGap(1, 1, 1)
-                            .addComponent(jTextField_FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel20)
-                            .addGap(1, 1, 1)
-                            .addComponent(jTextField_LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel21)
-                            .addGap(1, 1, 1)
-                            .addComponent(jTextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel22)
-                            .addGap(1, 1, 1)
-                            .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(1, 1, 1)
+                                .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel16))
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(1, 1, 1)
+                                .addComponent(jTextField_FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(1, 1, 1)
+                                .addComponent(jTextField_LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(1, 1, 1)
+                                .addComponent(jTextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(1, 1, 1)
+                                .addComponent(jTextField_Age, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel24))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel_Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel25)
@@ -835,7 +920,7 @@ public class AdminForm extends javax.swing.JFrame {
                         .addComponent(jLabel35)
                         .addGap(1, 1, 1)
                         .addComponent(jTextField_December, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4);
@@ -910,27 +995,27 @@ public class AdminForm extends javax.swing.JFrame {
 public Connection getConnection()
     {
         Connection con;
-        
+
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/login", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
             return con;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }   
+        }
     }
-    
+
     public ArrayList<User> getUsersList()
     {
         ArrayList<User> usersList = new ArrayList<User>();
         Connection connection = getConnection();
-        
-        String query = "SELECT * FROM `dane`"; 
+
+        String query = "SELECT * FROM `dane`";
         Statement st;
         ResultSet rs;
-        
-            try 
-            { 
+
+            try
+            {
             st = connection.createStatement();
             rs = st.executeQuery(query);
             User user;
@@ -939,13 +1024,13 @@ public Connection getConnection()
                 user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getInt("age"), rs.getString("january_salary"), rs.getString("february_salary"), rs.getString("march_salary"), rs.getString("april_salary"), rs.getString("may_salary"), rs.getString("june_salary"), rs.getString("july_salary"), rs.getString("august_salary"), rs.getString("september_salary"), rs.getString("october_salary"), rs.getString("november_salary"), rs.getString("december_salary"));
                 usersList.add(user);
             }
-            } catch (Exception e) 
+            } catch (Exception e)
             {
             e.printStackTrace();
             }
             return usersList;
     }
-    
+
     public void executeSQlQuery(String query, String message)
     {
         Connection con = getConnection();
@@ -958,23 +1043,23 @@ public Connection getConnection()
                 DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
                 model.setRowCount(0);
                 ShowUsersInJTable();
-                
+
                 JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
             }else{
                 JOptionPane.showMessageDialog(null, "Date NOT "+message);
             }
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-    public void ShowUsersInJTable() 
+
+    public void ShowUsersInJTable()
     {
         ArrayList<User> list = getUsersList();
         DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
         Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)      
+        for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getId();
             row[1] = list.get(i).getUserName();
@@ -995,11 +1080,23 @@ public Connection getConnection()
             row[16] = list.get(i).getOctoberSalary();
             row[17] = list.get(i).getNovemberSalary();
             row[18] = list.get(i).getDecemberSalary();
-            
+
             model.addRow(row);
         }
-    } 
+    }
     
+    public void clearUsersInJTable()
+    {
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        while(model.getRowCount() > 0)
+        {
+            for(int i=0; i < model.getRowCount(); i++)
+            {
+                model.removeRow(i);
+            }
+        }
+    }
+
     private void jLabel15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MousePressed
         // reading coordination of pressed poin
         xx = evt.getX();
@@ -1074,6 +1171,7 @@ public Connection getConnection()
         resetColor(jPanel_Xls);
         resetColor(jPanel_Print);
         resetColor(jPanel_PDF);
+        resetColor(jPanel_Email);
     }//GEN-LAST:event_jLabel_ManageMouseClicked
 
     private void jLabel_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LoginMouseClicked
@@ -1084,7 +1182,8 @@ public Connection getConnection()
         resetColor(jPanel_Xls);
         resetColor(jPanel_Print);
         resetColor(jPanel_PDF);
-        
+        resetColor(jPanel_Email);
+
         LoginForm lgf = new LoginForm();
         lgf.setVisible(true);
         lgf.setLocationRelativeTo(null);
@@ -1094,22 +1193,23 @@ public Connection getConnection()
         setColor(jPanel_Txt);
         resetColor(jPanel_Exit);
         resetColor(jPanel_Manage);
-        resetColor(jPanel_Login); 
+        resetColor(jPanel_Login);
         resetColor(jPanel_Xls);
         resetColor(jPanel_Print);
         resetColor(jPanel_PDF);
-        
+        resetColor(jPanel_Email);
+
         // Save raport as .txt file
         JFileChooser fs = new JFileChooser(new File("C:\\"));
         fs.setDialogTitle("Save a File");
         fs.setFileFilter(new FileTypeFilter(".txt", "Text File"));
         int result = fs.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {           
+        if (result == JFileChooser.APPROVE_OPTION) {
             File fi = fs.getSelectedFile();
             try {
-                FileWriter fw = new FileWriter(fi.getPath());
+                FileWriter fw = new FileWriter(fi.getPath()+".txt");
                 BufferedWriter bw = new BufferedWriter(fw);
-                
+
                 for (int i = 0; i < jTable_Users.getRowCount(); i++) {
                     for (int j = 0; j < jTable_Users.getColumnCount(); j++) {
                         bw.write(jTable_Users.getModel().getValueAt(i, j)+" | ");
@@ -1117,19 +1217,19 @@ public Connection getConnection()
                     bw.newLine();
                     bw.write("\n_________________________________________________________________________________________________________________________________________________________________\n");
                     bw.newLine();
-                    
+
                 }
                 bw.close();
                 fw.close();
                 JOptionPane.showMessageDialog(null, "Data exported to TXT successfully");
-                
-                
+
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jLabel_TxtMouseClicked
 
     private void jLabel_XlsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_XlsMouseClicked
@@ -1140,18 +1240,41 @@ public Connection getConnection()
         setColor(jPanel_Xls);
         resetColor(jPanel_Print);
         resetColor(jPanel_PDF);
-        
-        
-//        // Save raport as .xls file
-//        JFileChooser fs = new JFileChooser(new File("C:\\"));
-//        fs.setDialogTitle("Save a File");
-//        fs.setFileFilter(new FileTypeFilter(".xlsx", "Excel File"));
-//        int result = fs.showSaveDialog(null);
-//        if (result == JFileChooser.APPROVE_OPTION) {
-//            // TRY CATCH - SAVING TO XLS CODE
-//            // HERE!!
-//        }   
+        resetColor(jPanel_Email);
 
+        // Save raport as .xls file
+        JFileChooser fs = new JFileChooser(new File("C:\\"));
+        fs.setDialogTitle("Save a File");
+        fs.setFileFilter(new FileTypeFilter(".xls", "Excel File"));
+        int result = fs.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION){
+            File fi = fs.getSelectedFile();
+            try {
+                HSSFWorkbook fWorkbook = new HSSFWorkbook();
+                HSSFSheet fSheet = fWorkbook.createSheet("New Sheet");
+                File file = new File(fi.getPath());
+                HSSFCellStyle cellStyle = fWorkbook.createCellStyle();
+
+                TableModel model = jTable_Users.getModel();
+                
+                    for (int i = 0; i < model.getRowCount(); i++) {
+                        HSSFRow fRow = fSheet.createRow((short) i);
+                        for (int j = 0; j < model.getColumnCount(); j++) {
+                            HSSFCell cell = fRow.createCell((short) j);
+                            cell.setCellValue(model.getValueAt(i, j).toString());
+                            cell.setCellStyle(cellStyle);
+                        }
+                    }
+                FileOutputStream fileOutputStream;
+                fileOutputStream = new FileOutputStream(file+".xls");
+                BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream);
+                fWorkbook.write(bos);
+                bos.close();
+                fileOutputStream.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
     }//GEN-LAST:event_jLabel_XlsMouseClicked
 
     private void jLabel_PrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PrintMouseClicked
@@ -1162,7 +1285,8 @@ public Connection getConnection()
         resetColor(jPanel_Xls);
         setColor(jPanel_Print);
         resetColor(jPanel_PDF);
-        
+        resetColor(jPanel_Email);
+
         MessageFormat header = new MessageFormat("Report print - Users list");
         MessageFormat footer = new MessageFormat("Page{0,number,integer}");
         try {
@@ -1180,35 +1304,36 @@ public Connection getConnection()
         resetColor(jPanel_Xls);
         resetColor(jPanel_Print);
         setColor(jPanel_PDF);
-        
+        resetColor(jPanel_Email);
+
         JFileChooser fs = new JFileChooser(new File("C:\\"));
         fs.setDialogTitle("Save a File");
         fs.setFileFilter(new FileTypeFilter(".pdf", "PDF File"));
         int result = fs.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {           
+        if (result == JFileChooser.APPROVE_OPTION) {
             File fi = fs.getSelectedFile();
 
             try {
                 Document doc = new Document(PageSize.A4.rotate(), 20, 20, 20, 20);
-                PdfWriter.getInstance(doc, new FileOutputStream(fi.getPath())); 
+                PdfWriter.getInstance(doc, new FileOutputStream(fi.getPath()+".pdf"));
                 doc.open();
                 doc.add(new Paragraph(new Date().toString()));
                 doc.add(new Paragraph("."));
                 PdfPTable table = new PdfPTable(jTable_Users.getColumnCount());
                 table.setWidthPercentage(100);
                 System.out.println(jTable_Users.getColumnCount());
-                
+
                 //  Table headers
                 for(int k = 0; k < jTable_Users.getColumnCount(); k++){
                     table.addCell(jTable_Users.getColumnName(k).toString());
                 }
-                
-                //  Data from table 
+
+                //  Data from table
                 for (int i = 0; i < jTable_Users.getRowCount(); i++) {
                     for (int j = 0; j < jTable_Users.getColumnCount(); j++) {
                         table.addCell(jTable_Users.getModel().getValueAt(i, j).toString());
                     }
-                }  
+                }
                 doc.add(table);
                 doc.close();
                 JOptionPane.showMessageDialog(null, "Data exported to PDF successfully");
@@ -1217,15 +1342,287 @@ public Connection getConnection()
             }
         }
     }//GEN-LAST:event_jLabel_PDFMouseClicked
+
+    private void jLabel_RefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RefreshMouseClicked
+        clearUsersInJTable();
+        ShowUsersInJTable();
+    }//GEN-LAST:event_jLabel_RefreshMouseClicked
+
+    private void jLabel_EmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmailMouseClicked
+        resetColor(jPanel_Txt);
+        resetColor(jPanel_Exit);
+        resetColor(jPanel_Manage);
+        resetColor(jPanel_Login);
+        resetColor(jPanel_Xls);
+        resetColor(jPanel_Print);
+        resetColor(jPanel_PDF);
+        setColor(jPanel_Email);
+        
+        Email efm = new Email(jTextField_Email.getText());
+        efm.setVisible(true);
+        efm.pack();
+        efm.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jLabel_EmailMouseClicked
+
+    private void jLabel_SearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SearchMouseClicked
+        if(jTextField_ID.hasFocus()){
+            searchUserById(Integer.parseInt(jTextField_ID.getText()));
+        } else if(jTextField_UserName.hasFocus()){
+            searchUserByUserName(jTextField_UserName.getText());
+        } else if(jTextField_FirstName.hasFocus()){
+            searchUserByFirstName(jTextField_FirstName.getText());
+        } else if(jTextField_LastName.hasFocus()){
+            searchUserByLastName(jTextField_LastName.getText());
+        } else if(jTextField_Email.hasFocus()){
+            searchUserByEmail(jTextField_Email.getText());
+        } else if(jTextField_Age.hasFocus()){
+            searchUserByAge(Integer.parseInt(jTextField_Age.getText()));
+        } else {
+            System.out.println("Something is wrong with search Focus");
+        }
+    }//GEN-LAST:event_jLabel_SearchMouseClicked
+
+    private void jLabel_ClearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ClearMouseClicked
+        jTextField_ID.setText(null);
+        jTextField_UserName.setText(null);
+        jTextField_Password.setText(null);
+        jTextField_FirstName.setText(null);
+        jTextField_LastName.setText(null);
+        jTextField_Email.setText(null);
+        jTextField_Age.setText(null);
+        
+        jTextField_January.setText(null);
+        jTextField_February.setText(null);
+        jTextField_March.setText(null);
+        jTextField_April.setText(null);
+        jTextField_May.setText(null);
+        jTextField_June.setText(null);
+        jTextField_July.setText(null);
+        jTextField_August.setText(null);
+        jTextField_September.setText(null);
+        jTextField_October.setText(null);
+        jTextField_November.setText(null);
+        jTextField_December.setText(null);
+    }//GEN-LAST:event_jLabel_ClearMouseClicked
+ 
+    private void searchUserById(int id){
+        clearUsersInJTable();
+        
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+            
+            if (row[0].equals(id))
+            {
+            model.addRow(row);
+            }
+        }
+    }
+    
+    private void searchUserByUserName(String userName){
+        clearUsersInJTable();
+        
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+            
+            if (row[1].equals(userName))
+            {
+            model.addRow(row);
+            }
+        }
+    }
+    
+    private void searchUserByFirstName(String firstName){
+        clearUsersInJTable();
+        
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+            
+            if (row[3].equals(firstName))
+            {
+            model.addRow(row);    
+            }
+        }
+    }
+    
+    private void searchUserByLastName(String lastName){
+        clearUsersInJTable();
+        
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+            
+            if (row[4].equals(lastName))
+            {
+            model.addRow(row);    
+            }
+        }
+    }
+    
+    private void searchUserByEmail(String email){
+        clearUsersInJTable();
+        
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+            
+            if (row[5].equals(email))
+            {
+            model.addRow(row);    
+            }
+        }
+    }
+
+    private void searchUserByAge(int age){
+        clearUsersInJTable();
+        
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for(int i = 0; i < list.size(); i++)
+        {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+            
+            if (row[6].equals(age))
+            {
+            model.addRow(row);    
+            }
+        }
+    }    
     
     void setColor(JPanel panel){
         panel.setBackground(new Color(12,115,115));
     }
-    
+
     void resetColor(JPanel panel){
         panel.setBackground(new Color(31,174,174));
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1233,7 +1630,7 @@ public Connection getConnection()
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1284,28 +1681,31 @@ public Connection getConnection()
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel_Add;
+    private javax.swing.JLabel jLabel_Clear;
     private javax.swing.JLabel jLabel_Close;
     private javax.swing.JLabel jLabel_Edit;
+    private javax.swing.JLabel jLabel_Email;
     private javax.swing.JLabel jLabel_Exit;
     private javax.swing.JLabel jLabel_Iconified;
     private javax.swing.JLabel jLabel_Login;
     private javax.swing.JLabel jLabel_Manage;
     private javax.swing.JLabel jLabel_PDF;
     private javax.swing.JLabel jLabel_Print;
-    private javax.swing.JLabel jLabel_Print1;
+    private javax.swing.JLabel jLabel_Refresh;
     private javax.swing.JLabel jLabel_Remove;
+    private javax.swing.JLabel jLabel_Search;
     private javax.swing.JLabel jLabel_Txt;
     private javax.swing.JLabel jLabel_Xls;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel_Email;
     private javax.swing.JPanel jPanel_Exit;
     private javax.swing.JPanel jPanel_Login;
     private javax.swing.JPanel jPanel_Manage;
     private javax.swing.JPanel jPanel_PDF;
     private javax.swing.JPanel jPanel_Print;
-    private javax.swing.JPanel jPanel_Print1;
     private javax.swing.JPanel jPanel_Txt;
     private javax.swing.JPanel jPanel_Xls;
     private javax.swing.JScrollPane jScrollPane1;
