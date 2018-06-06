@@ -44,5 +44,5 @@ Frontend:
 
 ## Details
 
-[Here is presentation with short movie](https://http://jaroslawkowalczyk.pl/en.html)
+[Here is presentation with short movie](http://jaroslawkowalczyk.pl/en.html)
 
