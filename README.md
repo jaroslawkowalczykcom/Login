@@ -1,4 +1,4 @@
-# Login - Expands Management System
+# Expands Management System - DesktopApp
 
 Desktop App allowing user after sign in to manage his daily expands. 
 Date are saving in MySQL data base on outsiede server. 
