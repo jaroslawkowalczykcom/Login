@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package login;
 
 import java.sql.Connection;
@@ -17,10 +12,15 @@ import javax.swing.JOptionPane;
  * @author Jarek
  */
 public class RegisterForm extends javax.swing.JFrame {
-    
+
+    // jdbc config
+    private String jdbcDriver = "#####";
+    private String jdbcLogin = "#####";
+    private String jdbcPassword = "#####";
+
     int xx;
     int yy;
-    
+
     /**
      * Creates new form RegisterForm
      */
@@ -319,73 +319,62 @@ public class RegisterForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // Zamknięcie okna
+        // Close window
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // Minimalizacja okna
+        // Iconified window
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LoginMouseClicked
-        // Opening LoginForm
+        // Open LoginForm
         showLoginForm();
     }//GEN-LAST:event_jLabel_LoginMouseClicked
 
     private void jButton_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegisterActionPerformed
-        
-        // Sprawdzenie czy password i repassword są identyczne
-        if (!jPasswordField_Pass.getText().equals(jPasswordField_Repass.getText()))
-        {
+
+        // Checking correct of password and repaswword
+        if (!jPasswordField_Pass.getText().equals(jPasswordField_Repass.getText())) {
             JOptionPane.showMessageDialog(this, "Password and repassword are not the same. Type again.");
-        } else
-        {
-        // Wpisanie nowego użytkownika do bazy
+        } else {
+            // Wpisanie nowego użytkownika do bazy
             try {
                 // Username veryfication
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
+                Connection con = DriverManager.getConnection(jdbcDriver, jdbcLogin, jdbcPassword);
                 Statement st = con.createStatement();
-                String sqlUsernameCheck =  "SELECT `username` FROM `dane` WHERE `username`='"+jTextField_uname.getText()+"'";
+                String sqlUsernameCheck = "SELECT `username` FROM `dane` WHERE `username`='" + jTextField_uname.getText() + "'";
                 ResultSet rs = st.executeQuery(sqlUsernameCheck);
-                
+
                 int count = 0;
-                
-                while(rs.next())
-                {
+
+                while (rs.next()) {
                     count += 1;
                 }
-                
-                if(count == 1)
-                {
+
+                if (count == 1) {
                     JOptionPane.showMessageDialog(this, "This Username exist try with another");
-                } else if(count > 1)
-                {
+                } else if (count > 1) {
                     JOptionPane.showMessageDialog(this, "Dupliccate Username, acces denied.");
-                }
-                else
-                {
-                    getConnection("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('"+jTextField_uname.getText()+"','"+jPasswordField_Pass.getText()+"','"+jTextField_fname.getText()+"','"+jTextField_lname.getText()+"','"+jTextField_email.getText()+"',"+jTextField_age.getText()+")");
+                } else {
+                    getConnection("INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`) VALUES ('" + jTextField_uname.getText() + "','" + jPasswordField_Pass.getText() + "','" + jTextField_fname.getText() + "','" + jTextField_lname.getText() + "','" + jTextField_email.getText() + "'," + jTextField_age.getText() + ")");
                     JOptionPane.showMessageDialog(null, "New user added successfully");
                     showLoginForm();
                 }
-                
-       
-                
             } catch (Exception e) {
-                System.out.println("Błąd dodania do bazy"+e);
+                System.out.println("Błąd dodania do bazy" + e);
+                JOptionPane.showMessageDialog(this, "Error with adding new data to database " + e);
             }
         }
     }//GEN-LAST:event_jButton_RegisterActionPerformed
 
     private void jCheckBox_ShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_ShowPassActionPerformed
-        if(jCheckBox_ShowPass.isSelected())
-        {
-            jPasswordField_Pass.setEchoChar((char)0);
-            jPasswordField_Repass.setEchoChar((char)0);
-        } else
-        {
+        if (jCheckBox_ShowPass.isSelected()) {
+            jPasswordField_Pass.setEchoChar((char) 0);
+            jPasswordField_Repass.setEchoChar((char) 0);
+        } else {
             jPasswordField_Pass.setEchoChar('*');
             jPasswordField_Repass.setEchoChar('*');
         }
@@ -404,30 +393,27 @@ public class RegisterForm extends javax.swing.JFrame {
         this.setLocation(x - xx, y - yy);
     }//GEN-LAST:event_jLabel_draggedMouseDragged
 
-    public void getConnection(String query)
-    {
+    public void getConnection(String query) {
         Connection con;
         Statement st;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/login","root","");
+            con = DriverManager.getConnection(jdbcDriver, jdbcLogin, jdbcPassword);
             st = con.createStatement();
             st.executeUpdate(query);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
-    public void showLoginForm()
-    {
+
+    public void showLoginForm() {
         LoginForm lfm = new LoginForm();
         lfm.setVisible(true);
         lfm.pack();
         lfm.setLocationRelativeTo(null);
         lfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();    
+        this.dispose();
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

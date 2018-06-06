@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package login;
 
 import java.util.Date;
@@ -15,20 +10,20 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Jarek
  */
 public class Email extends javax.swing.JFrame {
+
     int xx;
     int yy;
-    
+
     /**
      * Creates new form Email
      */
     public Email() {
         initComponents();
     }
-    
+
     public Email(String email) {
         initComponents();
         jTextField_emailTo.setText(email);
@@ -220,26 +215,25 @@ public class Email extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xx, y - yy);
     }//GEN-LAST:event_jPanel2MouseDragged
-    
-    private void sendEmail(String mailTo, String mailSubject, String mailText)
-    {
-        try{
+
+    private void sendEmail(String mailTo, String mailSubject, String mailText) {
+        try {
             String host = "smtp.gmail.com";
-            String user = "expends.management.system@gmail.com";    
-            String pass = "jarekems717";
-            String from = "expends.management.system@gmail.com";
+            String user = "######";
+            String pass = "######";
+            String from = "######";
             boolean sessionDebug = false;
-            
+
             Properties props = System.getProperties();
-            
+
             props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
             props.put("mail.smtp.host", host);
             props.put("mail.smtp.port", "587");
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.required", "true");
-            
+
             java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-            
+
             Session mailSession = Session.getDefaultInstance(props, null);
             mailSession.setDebug(sessionDebug);
             Message msg = new MimeMessage(mailSession);
@@ -249,20 +243,20 @@ public class Email extends javax.swing.JFrame {
             msg.setSubject(mailSubject);
             msg.setSentDate(new Date());
             msg.setText(mailText);
-            
+
             Transport transport = mailSession.getTransport("smtp");
             transport.connect(host, user, pass);
             transport.sendMessage(msg, msg.getAllRecipients());
             transport.close();
-        //    System.out.println("message send successfully");
+            //System.out.println("message send successfully");
             JOptionPane.showMessageDialog(rootPane, "Message send successfully");
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(rootPane, "Error with sending email");
-        }       
+        }
     }
-    
+
     private void jButton_SendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_SendMouseClicked
         sendEmail(jTextField_emailTo.getText(), jTextField_Subject.getText(), jTextArea_EmailTxt.getText());
         this.dispose();

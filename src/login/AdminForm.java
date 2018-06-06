@@ -27,20 +27,22 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-
 public class AdminForm extends javax.swing.JFrame {
+
+    // jdbc config
+    private String jdbcDriver = "#####";
+    private String jdbcLogin = "#####";
+    private String jdbcPassword = "#####";
 
     int xx;
     int yy;
-
-
 
     public AdminForm() {
         initComponents();
         ShowUsersInJTable();
 
         setColor(jPanel_Manage);
-        
+
     }
 
     /**
@@ -59,7 +61,7 @@ public class AdminForm extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel_Manage = new javax.swing.JPanel();
-        jLabel_Manage = new javax.swing.JLabel();
+        jLabel_ManageUsers = new javax.swing.JLabel();
         jPanel_Exit = new javax.swing.JPanel();
         jLabel_Close = new javax.swing.JLabel();
         jPanel_Login = new javax.swing.JPanel();
@@ -198,14 +200,14 @@ public class AdminForm extends javax.swing.JFrame {
 
         jPanel_Manage.setBackground(new java.awt.Color(31, 174, 174));
 
-        jLabel_Manage.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel_Manage.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Manage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
-        jLabel_Manage.setText("  Manage Users");
-        jLabel_Manage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel_Manage.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_ManageUsers.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel_ManageUsers.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_ManageUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
+        jLabel_ManageUsers.setText("  Manage Users");
+        jLabel_ManageUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_ManageUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_ManageMouseClicked(evt);
+                jLabel_ManageUsersMouseClicked(evt);
             }
         });
 
@@ -215,13 +217,13 @@ public class AdminForm extends javax.swing.JFrame {
             jPanel_ManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel_Manage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel_ManageUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_ManageLayout.setVerticalGroup(
             jPanel_ManageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_ManageLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel_Manage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel_ManageUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel_Exit.setBackground(new java.awt.Color(31, 174, 174));
@@ -992,12 +994,11 @@ public class AdminForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-public Connection getConnection()
-    {
+    public Connection getConnection() {
         Connection con;
 
         try {
-            con = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
+            con = DriverManager.getConnection(jdbcDriver, jdbcLogin, jdbcPassword);
             return con;
         } catch (Exception e) {
             e.printStackTrace();
@@ -1005,8 +1006,7 @@ public Connection getConnection()
         }
     }
 
-    public ArrayList<User> getUsersList()
-    {
+    public ArrayList<User> getUsersList() {
         ArrayList<User> usersList = new ArrayList<User>();
         Connection connection = getConnection();
 
@@ -1014,39 +1014,34 @@ public Connection getConnection()
         Statement st;
         ResultSet rs;
 
-            try
-            {
+        try {
             st = connection.createStatement();
             rs = st.executeQuery(query);
             User user;
-            while(rs.next())
-            {
+            while (rs.next()) {
                 user = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("email"), rs.getInt("age"), rs.getString("january_salary"), rs.getString("february_salary"), rs.getString("march_salary"), rs.getString("april_salary"), rs.getString("may_salary"), rs.getString("june_salary"), rs.getString("july_salary"), rs.getString("august_salary"), rs.getString("september_salary"), rs.getString("october_salary"), rs.getString("november_salary"), rs.getString("december_salary"));
                 usersList.add(user);
             }
-            } catch (Exception e)
-            {
+        } catch (Exception e) {
             e.printStackTrace();
-            }
-            return usersList;
+        }
+        return usersList;
     }
 
-    public void executeSQlQuery(String query, String message)
-    {
+    public void executeSQlQuery(String query, String message) {
         Connection con = getConnection();
         Statement st;
         try {
             st = con.createStatement();
-            if ((st.executeUpdate(query)) == 1)
-            {
+            if ((st.executeUpdate(query)) == 1) {
                 // Refreshing data in jTable
-                DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+                DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
                 model.setRowCount(0);
                 ShowUsersInJTable();
 
-                JOptionPane.showMessageDialog(null, "Date "+message+" successfully");
-            }else{
-                JOptionPane.showMessageDialog(null, "Date NOT "+message);
+                JOptionPane.showMessageDialog(null, "Date " + message + " successfully");
+            } else {
+                JOptionPane.showMessageDialog(null, "Date NOT " + message);
             }
 
         } catch (Exception ex) {
@@ -1054,13 +1049,11 @@ public Connection getConnection()
         }
     }
 
-    public void ShowUsersInJTable()
-    {
+    public void ShowUsersInJTable() {
         ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
         Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getId();
             row[1] = list.get(i).getUserName();
             row[2] = list.get(i).getPassword();
@@ -1084,14 +1077,11 @@ public Connection getConnection()
             model.addRow(row);
         }
     }
-    
-    public void clearUsersInJTable()
-    {
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
-        while(model.getRowCount() > 0)
-        {
-            for(int i=0; i < model.getRowCount(); i++)
-            {
+
+    public void clearUsersInJTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
+        while (model.getRowCount() > 0) {
+            for (int i = 0; i < model.getRowCount(); i++) {
                 model.removeRow(i);
             }
         }
@@ -1120,17 +1110,17 @@ public Connection getConnection()
     }//GEN-LAST:event_jLabel_ExitMouseClicked
 
     private void jLabel_EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EditMouseClicked
-        String query = "UPDATE `dane` SET `username`='"+jTextField_UserName.getText()+"',`password`='"+jTextField_Password.getText()+"',`firstname`='"+jTextField_FirstName.getText()+"',`lastname`='"+jTextField_LastName.getText()+"',`email`='"+jTextField_Email.getText()+"',`age`="+jTextField_Age.getText()+",`january_salary`='"+jTextField_January.getText()+"',`february_salary`='"+jTextField_February.getText()+"',`march_salary`='"+jTextField_March.getText()+"',`april_salary`='"+jTextField_April.getText()+"',`may_salary`='"+jTextField_May.getText()+"',`june_salary`='"+jTextField_June.getText()+"',`july_salary`='"+jTextField_July.getText()+"',`august_salary`='"+jTextField_August.getText()+"',`september_salary`='"+jTextField_September.getText()+"',`october_salary`='"+jTextField_October.getText()+"',`november_salary`='"+jTextField_November.getText()+"',`december_salary`='"+jTextField_December.getText()+"' WHERE `id`="+jTextField_ID.getText();
+        String query = "UPDATE `dane` SET `username`='" + jTextField_UserName.getText() + "',`password`='" + jTextField_Password.getText() + "',`firstname`='" + jTextField_FirstName.getText() + "',`lastname`='" + jTextField_LastName.getText() + "',`email`='" + jTextField_Email.getText() + "',`age`=" + jTextField_Age.getText() + ",`january_salary`='" + jTextField_January.getText() + "',`february_salary`='" + jTextField_February.getText() + "',`march_salary`='" + jTextField_March.getText() + "',`april_salary`='" + jTextField_April.getText() + "',`may_salary`='" + jTextField_May.getText() + "',`june_salary`='" + jTextField_June.getText() + "',`july_salary`='" + jTextField_July.getText() + "',`august_salary`='" + jTextField_August.getText() + "',`september_salary`='" + jTextField_September.getText() + "',`october_salary`='" + jTextField_October.getText() + "',`november_salary`='" + jTextField_November.getText() + "',`december_salary`='" + jTextField_December.getText() + "' WHERE `id`=" + jTextField_ID.getText();
         executeSQlQuery(query, "Updated");
     }//GEN-LAST:event_jLabel_EditMouseClicked
 
     private void jLabel_RemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RemoveMouseClicked
-        String query = "DELETE FROM `dane` WHERE id ="+jTextField_ID.getText();
+        String query = "DELETE FROM `dane` WHERE id =" + jTextField_ID.getText();
         executeSQlQuery(query, "Deleted");
     }//GEN-LAST:event_jLabel_RemoveMouseClicked
 
     private void jLabel_AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AddMouseClicked
-        String query = "INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`, `january_salary`, `february_salary`, `march_salary`, `april_salary`, `may_salary`, `june_salary`, `july_salary`, `august_salary`, `september_salary`, `october_salary`, `november_salary`, `december_salary`) VALUES ('"+jTextField_UserName.getText()+"','"+jTextField_Password.getText()+"','"+jTextField_FirstName.getText()+"','"+jTextField_LastName.getText()+"','"+jTextField_Email.getText()+"',"+jTextField_Age.getText()+",'"+jTextField_January.getText()+"','"+jTextField_February.getText()+"','"+jTextField_March.getText()+"','"+jTextField_April.getText()+"','"+jTextField_May.getText()+"','"+jTextField_June.getText()+"','"+jTextField_July.getText()+"','"+jTextField_August.getText()+"','"+jTextField_September.getText()+"','"+jTextField_October.getText()+"','"+jTextField_November.getText()+"','"+jTextField_December.getText()+"')";
+        String query = "INSERT INTO `dane`(`username`, `password`, `firstname`, `lastname`, `email`, `age`, `january_salary`, `february_salary`, `march_salary`, `april_salary`, `may_salary`, `june_salary`, `july_salary`, `august_salary`, `september_salary`, `october_salary`, `november_salary`, `december_salary`) VALUES ('" + jTextField_UserName.getText() + "','" + jTextField_Password.getText() + "','" + jTextField_FirstName.getText() + "','" + jTextField_LastName.getText() + "','" + jTextField_Email.getText() + "'," + jTextField_Age.getText() + ",'" + jTextField_January.getText() + "','" + jTextField_February.getText() + "','" + jTextField_March.getText() + "','" + jTextField_April.getText() + "','" + jTextField_May.getText() + "','" + jTextField_June.getText() + "','" + jTextField_July.getText() + "','" + jTextField_August.getText() + "','" + jTextField_September.getText() + "','" + jTextField_October.getText() + "','" + jTextField_November.getText() + "','" + jTextField_December.getText() + "')";
         executeSQlQuery(query, "Added");
     }//GEN-LAST:event_jLabel_AddMouseClicked
 
@@ -1163,7 +1153,7 @@ public Connection getConnection()
         this.dispose();
     }//GEN-LAST:event_jLabel_CloseMouseClicked
 
-    private void jLabel_ManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ManageMouseClicked
+    private void jLabel_ManageUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ManageUsersMouseClicked
         resetColor(jPanel_Exit);
         setColor(jPanel_Manage);
         resetColor(jPanel_Login);
@@ -1172,7 +1162,7 @@ public Connection getConnection()
         resetColor(jPanel_Print);
         resetColor(jPanel_PDF);
         resetColor(jPanel_Email);
-    }//GEN-LAST:event_jLabel_ManageMouseClicked
+    }//GEN-LAST:event_jLabel_ManageUsersMouseClicked
 
     private void jLabel_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LoginMouseClicked
         resetColor(jPanel_Exit);
@@ -1207,12 +1197,12 @@ public Connection getConnection()
         if (result == JFileChooser.APPROVE_OPTION) {
             File fi = fs.getSelectedFile();
             try {
-                FileWriter fw = new FileWriter(fi.getPath()+".txt");
+                FileWriter fw = new FileWriter(fi.getPath() + ".txt");
                 BufferedWriter bw = new BufferedWriter(fw);
 
                 for (int i = 0; i < jTable_Users.getRowCount(); i++) {
                     for (int j = 0; j < jTable_Users.getColumnCount(); j++) {
-                        bw.write(jTable_Users.getModel().getValueAt(i, j)+" | ");
+                        bw.write(jTable_Users.getModel().getValueAt(i, j) + " | ");
                     }
                     bw.newLine();
                     bw.write("\n_________________________________________________________________________________________________________________________________________________________________\n");
@@ -1223,13 +1213,10 @@ public Connection getConnection()
                 fw.close();
                 JOptionPane.showMessageDialog(null, "Data exported to TXT successfully");
 
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-
-
     }//GEN-LAST:event_jLabel_TxtMouseClicked
 
     private void jLabel_XlsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_XlsMouseClicked
@@ -1247,7 +1234,7 @@ public Connection getConnection()
         fs.setDialogTitle("Save a File");
         fs.setFileFilter(new FileTypeFilter(".xls", "Excel File"));
         int result = fs.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION){
+        if (result == JFileChooser.APPROVE_OPTION) {
             File fi = fs.getSelectedFile();
             try {
                 HSSFWorkbook fWorkbook = new HSSFWorkbook();
@@ -1256,22 +1243,23 @@ public Connection getConnection()
                 HSSFCellStyle cellStyle = fWorkbook.createCellStyle();
 
                 TableModel model = jTable_Users.getModel();
-                
-                    for (int i = 0; i < model.getRowCount(); i++) {
-                        HSSFRow fRow = fSheet.createRow((short) i);
-                        for (int j = 0; j < model.getColumnCount(); j++) {
-                            HSSFCell cell = fRow.createCell((short) j);
-                            cell.setCellValue(model.getValueAt(i, j).toString());
-                            cell.setCellStyle(cellStyle);
-                        }
+
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    HSSFRow fRow = fSheet.createRow((short) i);
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        HSSFCell cell = fRow.createCell((short) j);
+                        cell.setCellValue(model.getValueAt(i, j).toString());
+                        cell.setCellStyle(cellStyle);
                     }
+                }
                 FileOutputStream fileOutputStream;
-                fileOutputStream = new FileOutputStream(file+".xls");
+                fileOutputStream = new FileOutputStream(file + ".xls");
                 BufferedOutputStream bos = new BufferedOutputStream(fileOutputStream);
                 fWorkbook.write(bos);
                 bos.close();
                 fileOutputStream.close();
-            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Data exported to .xls successfully.");
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
@@ -1315,7 +1303,7 @@ public Connection getConnection()
 
             try {
                 Document doc = new Document(PageSize.A4.rotate(), 20, 20, 20, 20);
-                PdfWriter.getInstance(doc, new FileOutputStream(fi.getPath()+".pdf"));
+                PdfWriter.getInstance(doc, new FileOutputStream(fi.getPath() + ".pdf"));
                 doc.open();
                 doc.add(new Paragraph(new Date().toString()));
                 doc.add(new Paragraph("."));
@@ -1324,7 +1312,7 @@ public Connection getConnection()
                 System.out.println(jTable_Users.getColumnCount());
 
                 //  Table headers
-                for(int k = 0; k < jTable_Users.getColumnCount(); k++){
+                for (int k = 0; k < jTable_Users.getColumnCount(); k++) {
                     table.addCell(jTable_Users.getColumnName(k).toString());
                 }
 
@@ -1357,7 +1345,7 @@ public Connection getConnection()
         resetColor(jPanel_Print);
         resetColor(jPanel_PDF);
         setColor(jPanel_Email);
-        
+
         Email efm = new Email(jTextField_Email.getText());
         efm.setVisible(true);
         efm.pack();
@@ -1365,17 +1353,17 @@ public Connection getConnection()
     }//GEN-LAST:event_jLabel_EmailMouseClicked
 
     private void jLabel_SearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SearchMouseClicked
-        if(jTextField_ID.hasFocus()){
+        if (jTextField_ID.hasFocus()) {
             searchUserById(Integer.parseInt(jTextField_ID.getText()));
-        } else if(jTextField_UserName.hasFocus()){
+        } else if (jTextField_UserName.hasFocus()) {
             searchUserByUserName(jTextField_UserName.getText());
-        } else if(jTextField_FirstName.hasFocus()){
+        } else if (jTextField_FirstName.hasFocus()) {
             searchUserByFirstName(jTextField_FirstName.getText());
-        } else if(jTextField_LastName.hasFocus()){
+        } else if (jTextField_LastName.hasFocus()) {
             searchUserByLastName(jTextField_LastName.getText());
-        } else if(jTextField_Email.hasFocus()){
+        } else if (jTextField_Email.hasFocus()) {
             searchUserByEmail(jTextField_Email.getText());
-        } else if(jTextField_Age.hasFocus()){
+        } else if (jTextField_Age.hasFocus()) {
             searchUserByAge(Integer.parseInt(jTextField_Age.getText()));
         } else {
             System.out.println("Something is wrong with search Focus");
@@ -1390,7 +1378,7 @@ public Connection getConnection()
         jTextField_LastName.setText(null);
         jTextField_Email.setText(null);
         jTextField_Age.setText(null);
-        
+
         jTextField_January.setText(null);
         jTextField_February.setText(null);
         jTextField_March.setText(null);
@@ -1404,15 +1392,14 @@ public Connection getConnection()
         jTextField_November.setText(null);
         jTextField_December.setText(null);
     }//GEN-LAST:event_jLabel_ClearMouseClicked
- 
-    private void searchUserById(int id){
+
+    private void searchUserById(int id) {
         clearUsersInJTable();
-        
+
         ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
         Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getId();
             row[1] = list.get(i).getUserName();
             row[2] = list.get(i).getPassword();
@@ -1432,162 +1419,20 @@ public Connection getConnection()
             row[16] = list.get(i).getOctoberSalary();
             row[17] = list.get(i).getNovemberSalary();
             row[18] = list.get(i).getDecemberSalary();
-            
-            if (row[0].equals(id))
-            {
-            model.addRow(row);
-            }
-        }
-    }
-    
-    private void searchUserByUserName(String userName){
-        clearUsersInJTable();
-        
-        ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
-        Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getUserName();
-            row[2] = list.get(i).getPassword();
-            row[3] = list.get(i).getFirstName();
-            row[4] = list.get(i).getLastName();
-            row[5] = list.get(i).getEMail();
-            row[6] = list.get(i).getAge();
-            row[7] = list.get(i).getJanuarySalary();
-            row[8] = list.get(i).getFebruarySalary();
-            row[9] = list.get(i).getMarchSalary();
-            row[10] = list.get(i).getAprilSalary();
-            row[11] = list.get(i).getMaySalary();
-            row[12] = list.get(i).getJuneSalary();
-            row[13] = list.get(i).getJulySalary();
-            row[14] = list.get(i).getAugustSalary();
-            row[15] = list.get(i).getSeptemberSalary();
-            row[16] = list.get(i).getOctoberSalary();
-            row[17] = list.get(i).getNovemberSalary();
-            row[18] = list.get(i).getDecemberSalary();
-            
-            if (row[1].equals(userName))
-            {
-            model.addRow(row);
-            }
-        }
-    }
-    
-    private void searchUserByFirstName(String firstName){
-        clearUsersInJTable();
-        
-        ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
-        Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getUserName();
-            row[2] = list.get(i).getPassword();
-            row[3] = list.get(i).getFirstName();
-            row[4] = list.get(i).getLastName();
-            row[5] = list.get(i).getEMail();
-            row[6] = list.get(i).getAge();
-            row[7] = list.get(i).getJanuarySalary();
-            row[8] = list.get(i).getFebruarySalary();
-            row[9] = list.get(i).getMarchSalary();
-            row[10] = list.get(i).getAprilSalary();
-            row[11] = list.get(i).getMaySalary();
-            row[12] = list.get(i).getJuneSalary();
-            row[13] = list.get(i).getJulySalary();
-            row[14] = list.get(i).getAugustSalary();
-            row[15] = list.get(i).getSeptemberSalary();
-            row[16] = list.get(i).getOctoberSalary();
-            row[17] = list.get(i).getNovemberSalary();
-            row[18] = list.get(i).getDecemberSalary();
-            
-            if (row[3].equals(firstName))
-            {
-            model.addRow(row);    
-            }
-        }
-    }
-    
-    private void searchUserByLastName(String lastName){
-        clearUsersInJTable();
-        
-        ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
-        Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getUserName();
-            row[2] = list.get(i).getPassword();
-            row[3] = list.get(i).getFirstName();
-            row[4] = list.get(i).getLastName();
-            row[5] = list.get(i).getEMail();
-            row[6] = list.get(i).getAge();
-            row[7] = list.get(i).getJanuarySalary();
-            row[8] = list.get(i).getFebruarySalary();
-            row[9] = list.get(i).getMarchSalary();
-            row[10] = list.get(i).getAprilSalary();
-            row[11] = list.get(i).getMaySalary();
-            row[12] = list.get(i).getJuneSalary();
-            row[13] = list.get(i).getJulySalary();
-            row[14] = list.get(i).getAugustSalary();
-            row[15] = list.get(i).getSeptemberSalary();
-            row[16] = list.get(i).getOctoberSalary();
-            row[17] = list.get(i).getNovemberSalary();
-            row[18] = list.get(i).getDecemberSalary();
-            
-            if (row[4].equals(lastName))
-            {
-            model.addRow(row);    
-            }
-        }
-    }
-    
-    private void searchUserByEmail(String email){
-        clearUsersInJTable();
-        
-        ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
-        Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
-            row[0] = list.get(i).getId();
-            row[1] = list.get(i).getUserName();
-            row[2] = list.get(i).getPassword();
-            row[3] = list.get(i).getFirstName();
-            row[4] = list.get(i).getLastName();
-            row[5] = list.get(i).getEMail();
-            row[6] = list.get(i).getAge();
-            row[7] = list.get(i).getJanuarySalary();
-            row[8] = list.get(i).getFebruarySalary();
-            row[9] = list.get(i).getMarchSalary();
-            row[10] = list.get(i).getAprilSalary();
-            row[11] = list.get(i).getMaySalary();
-            row[12] = list.get(i).getJuneSalary();
-            row[13] = list.get(i).getJulySalary();
-            row[14] = list.get(i).getAugustSalary();
-            row[15] = list.get(i).getSeptemberSalary();
-            row[16] = list.get(i).getOctoberSalary();
-            row[17] = list.get(i).getNovemberSalary();
-            row[18] = list.get(i).getDecemberSalary();
-            
-            if (row[5].equals(email))
-            {
-            model.addRow(row);    
+
+            if (row[0].equals(id)) {
+                model.addRow(row);
             }
         }
     }
 
-    private void searchUserByAge(int age){
+    private void searchUserByUserName(String userName) {
         clearUsersInJTable();
-        
+
         ArrayList<User> list = getUsersList();
-        DefaultTableModel model = (DefaultTableModel)jTable_Users.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
         Object[] row = new Object[19];
-        for(int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getId();
             row[1] = list.get(i).getUserName();
             row[2] = list.get(i).getPassword();
@@ -1607,20 +1452,151 @@ public Connection getConnection()
             row[16] = list.get(i).getOctoberSalary();
             row[17] = list.get(i).getNovemberSalary();
             row[18] = list.get(i).getDecemberSalary();
-            
-            if (row[6].equals(age))
-            {
-            model.addRow(row);    
+
+            if (row[1].equals(userName)) {
+                model.addRow(row);
             }
         }
-    }    
-    
-    void setColor(JPanel panel){
-        panel.setBackground(new Color(12,115,115));
     }
 
-    void resetColor(JPanel panel){
-        panel.setBackground(new Color(31,174,174));
+    private void searchUserByFirstName(String firstName) {
+        clearUsersInJTable();
+
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+
+            if (row[3].equals(firstName)) {
+                model.addRow(row);
+            }
+        }
+    }
+
+    private void searchUserByLastName(String lastName) {
+        clearUsersInJTable();
+
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+
+            if (row[4].equals(lastName)) {
+                model.addRow(row);
+            }
+        }
+    }
+
+    private void searchUserByEmail(String email) {
+        clearUsersInJTable();
+
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+
+            if (row[5].equals(email)) {
+                model.addRow(row);
+            }
+        }
+    }
+
+    private void searchUserByAge(int age) {
+        clearUsersInJTable();
+
+        ArrayList<User> list = getUsersList();
+        DefaultTableModel model = (DefaultTableModel) jTable_Users.getModel();
+        Object[] row = new Object[19];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getUserName();
+            row[2] = list.get(i).getPassword();
+            row[3] = list.get(i).getFirstName();
+            row[4] = list.get(i).getLastName();
+            row[5] = list.get(i).getEMail();
+            row[6] = list.get(i).getAge();
+            row[7] = list.get(i).getJanuarySalary();
+            row[8] = list.get(i).getFebruarySalary();
+            row[9] = list.get(i).getMarchSalary();
+            row[10] = list.get(i).getAprilSalary();
+            row[11] = list.get(i).getMaySalary();
+            row[12] = list.get(i).getJuneSalary();
+            row[13] = list.get(i).getJulySalary();
+            row[14] = list.get(i).getAugustSalary();
+            row[15] = list.get(i).getSeptemberSalary();
+            row[16] = list.get(i).getOctoberSalary();
+            row[17] = list.get(i).getNovemberSalary();
+            row[18] = list.get(i).getDecemberSalary();
+
+            if (row[6].equals(age)) {
+                model.addRow(row);
+            }
+        }
+    }
+
+    void setColor(JPanel panel) {
+        panel.setBackground(new Color(12, 115, 115));
+    }
+
+    void resetColor(JPanel panel) {
+        panel.setBackground(new Color(31, 174, 174));
     }
 
     /**
@@ -1688,7 +1664,7 @@ public Connection getConnection()
     private javax.swing.JLabel jLabel_Exit;
     private javax.swing.JLabel jLabel_Iconified;
     private javax.swing.JLabel jLabel_Login;
-    private javax.swing.JLabel jLabel_Manage;
+    private javax.swing.JLabel jLabel_ManageUsers;
     private javax.swing.JLabel jLabel_PDF;
     private javax.swing.JLabel jLabel_Print;
     private javax.swing.JLabel jLabel_Refresh;

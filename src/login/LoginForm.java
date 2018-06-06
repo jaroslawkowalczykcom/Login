@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package login;
 
 import java.awt.event.KeyEvent;
@@ -15,15 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Jarek
  */
 public class LoginForm extends javax.swing.JFrame {
-    
-    
+
+    // jdbc config
+    private String jdbcDriver = "#####";
+    private String jdbcLogin = "#####";
+    private String jdbcPassword = "#####";
+
     int xx;
     int yy;
-    
+
     /**
      * Creates new form LoginForm
      */
@@ -192,7 +190,7 @@ public class LoginForm extends javax.swing.JFrame {
         jButton_Login.setBackground(new java.awt.Color(0, 153, 153));
         jButton_Login.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton_Login.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_Login.setText("Sign Up");
+        jButton_Login.setText("Sign In");
         jButton_Login.setBorder(null);
         jButton_Login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_Login.addActionListener(new java.awt.event.ActionListener() {
@@ -264,61 +262,54 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LoginActionPerformed
-        
+
         Connection connection;
         PreparedStatement ps;
-        
+
         try {
             // MySQL DB Connection
-            connection = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
+            connection = DriverManager.getConnection(jdbcDriver, jdbcLogin, jdbcPassword);
             ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
             ps.setString(1, jTextField_Login.getText());
             ps.setString(2, String.valueOf(jPasswordField_Pass.getPassword()));
             ResultSet result = ps.executeQuery();
-            
-            if(result.next())
-            {
+
+            if (result.next()) {
                 String userName = jTextField_Login.getText();
-                
+
                 //  Checking if login is NOT admin - showing AppForm
-                if(!jTextField_Login.getText().equals("admin")){
-                AppForm afm = new AppForm(userName); 
-                afm.setVisible(true);
-                afm.pack();
-                afm.setLocationRelativeTo(null);
-                afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
+                if (!jTextField_Login.getText().equals("admin")) {
+                    AppForm afm = new AppForm(userName);
+                    afm.setVisible(true);
+                    afm.pack();
+                    afm.setLocationRelativeTo(null);
+                    afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
                 }
-                
-                // Checking if admin is admin - showing admiaAdminForm
-                if(jTextField_Login.getText().equals("admin"))
-                { 
+
+                // Checking if admin is admin - showing AdminForm
+                if (jTextField_Login.getText().equals("admin")) {
                     AdminForm admFm = new AdminForm();
                     admFm.setVisible(true);
                     admFm.pack();
                     admFm.setLocationRelativeTo(null);
                     admFm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     this.dispose();
-                } 
-            } 
-            else
-            {
+                }
+            } else {
                 JOptionPane.showMessageDialog(this, "Login Error, incorrect username or password");
             }
         } catch (SQLException ex) {
             System.out.println((ex.getStackTrace()));
-            JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database"+ex);
+            JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database" + ex);
         }
-        
+
     }//GEN-LAST:event_jButton_LoginActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if(jCheckBox1.isSelected())
-        {
-            jPasswordField_Pass.setEchoChar((char)0);
-        } 
-        else
-        {
+        if (jCheckBox1.isSelected()) {
+            jPasswordField_Pass.setEchoChar((char) 0);
+        } else {
             jPasswordField_Pass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -340,7 +331,7 @@ public class LoginForm extends javax.swing.JFrame {
         rfm.pack();
         rfm.setLocationRelativeTo(null);
         rfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();  // exit LoginForm
+        this.dispose();
     }//GEN-LAST:event_jLabel_RegisterMouseClicked
 
     private void jLabel_drageddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_drageddMousePressed
@@ -357,51 +348,46 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_drageddMouseDragged
 
     private void jPasswordField_PassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField_PassKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Connection connection;
             PreparedStatement ps;
-            
+
             try {
                 // MySQL DB Connection
-                connection = DriverManager.getConnection("jdbc:mysql://77.55.236.131:3306/admin_db", "admin_admin", "jarek1234");
+                connection = DriverManager.getConnection(jdbcDriver, jdbcLogin, jdbcPassword);
                 ps = connection.prepareStatement("SELECT `username`, `password` FROM `dane` WHERE `username` =? AND `password` =?");
                 ps.setString(1, jTextField_Login.getText());
                 ps.setString(2, String.valueOf(jPasswordField_Pass.getPassword()));
                 ResultSet result = ps.executeQuery();
 
-                if(result.next())
-                {
+                if (result.next()) {
                     String userName = jTextField_Login.getText();
 
                     //  Checking if login is NOT admin - showing AppForm
-                    if(!jTextField_Login.getText().equals("admin")){
-                    AppForm afm = new AppForm(userName); 
-                    afm.setVisible(true);
-                    afm.pack();
-                    afm.setLocationRelativeTo(null);
-                    afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    this.dispose();
+                    if (!jTextField_Login.getText().equals("admin")) {
+                        AppForm afm = new AppForm(userName);
+                        afm.setVisible(true);
+                        afm.pack();
+                        afm.setLocationRelativeTo(null);
+                        afm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
                     }
 
                     // Checking if admin is admin - showing admiaAdminForm
-                    if(jTextField_Login.getText().equals("admin"))
-                    { 
+                    if (jTextField_Login.getText().equals("admin")) {
                         AdminForm admFm = new AdminForm();
                         admFm.setVisible(true);
                         admFm.pack();
                         admFm.setLocationRelativeTo(null);
                         admFm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         this.dispose();
-                    } 
-                } 
-                else
-                {
+                    }
+                } else {
                     JOptionPane.showMessageDialog(this, "Login Error, incorrect username or password");
                 }
             } catch (SQLException ex) {
                 System.out.println((ex.getStackTrace()));
-                JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database"+ex);
+                JOptionPane.showMessageDialog(this, "There is a no connection to MySQL database" + ex);
             }
         }
     }//GEN-LAST:event_jPasswordField_PassKeyPressed
