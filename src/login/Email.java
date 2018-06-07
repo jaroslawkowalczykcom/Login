@@ -219,9 +219,9 @@ public class Email extends javax.swing.JFrame {
     private void sendEmail(String mailTo, String mailSubject, String mailText) {
         try {
             String host = "smtp.gmail.com";
-            String user = "######";
-            String pass = "######";
-            String from = "######";
+            String user = "#####";
+            String pass = "#####";
+            String from = "#####";
             boolean sessionDebug = false;
 
             Properties props = System.getProperties();

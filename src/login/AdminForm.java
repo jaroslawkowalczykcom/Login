@@ -157,13 +157,11 @@ public class AdminForm extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel_Exit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(810, 0, 44, 44);
+        jPanel3.setBounds(810, 0, 44, 50);
 
         jLabel_Iconified.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel_Iconified.setForeground(new java.awt.Color(51, 51, 51));
@@ -177,7 +175,7 @@ public class AdminForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel_Iconified);
-        jLabel_Iconified.setBounds(790, 0, 20, 40);
+        jLabel_Iconified.setBounds(780, 0, 30, 50);
 
         jLabel15.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(51, 51, 51));
